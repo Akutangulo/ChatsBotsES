@@ -1,10 +1,10 @@
 # ChatsBotsES
 
-### Propósito del Chatbot
+## Propósito del Chatbot
 
 El chatbot de Akutangulo está diseñado para proporcionar información rápida y precisa sobre los servicios de la empresa a través de una interfaz interactiva y fácil de usar. Utiliza inteligencia artificial avanzada para responder a las consultas en tiempo real, mejorando la experiencia del usuario y proporcionando asistencia continua.
 
-### Características Principales
+## Características Principales
 
 1. **Interfaz de Usuario Intuitiva:**
    - **Burbuja de Chat:** Un pequeño icono de burbuja en la esquina inferior de la página web permite a los usuarios iniciar una conversación con un solo clic.
@@ -22,13 +22,13 @@ El chatbot de Akutangulo está diseñado para proporcionar información rápida 
    - El chatbot recuerda el contexto de la conversación, permitiendo interacciones más coherentes y personalizadas.
    - La memoria de la conversación se mantiene durante la sesión actual, ofreciendo una experiencia más fluida.
 
-### Beneficios para los Usuarios
+## Beneficios para los Usuarios
 
 - **Disponibilidad Continua:** El chatbot está disponible las 24 horas del día, los 7 días de la semana, permitiendo a los usuarios obtener información y asistencia en cualquier momento.
 - **Respuestas Inmediatas:** Los usuarios reciben respuestas rápidas a sus consultas, sin tiempos de espera prolongados.
 - **Facilidad de Uso:** La interfaz está diseñada para ser intuitiva, permitiendo que cualquier usuario, independientemente de su habilidad técnica, pueda interactuar fácilmente con el chatbot.
 
-### Cómo Utilizar el Chatbot
+## Cómo Utilizar el Chatbot
 
 1. **Iniciar una Conversación:**
    - Haz clic en la burbuja de chat en la esquina inferior derecha de la página web para abrir la ventana del chatbot.
