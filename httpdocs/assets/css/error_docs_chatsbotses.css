@@ -1,0 +1,119 @@
+/*****************************************************
+* Estilos de las páginas de error de Akutangulo.com *
+*****************************************************/
+@import url("https://fonts.googleapis.com/css?family=Bungee");
+
+.ojo-error {
+    font-family: "Bungee", cursive;
+    font-weight: 100;
+}
+
+svg {
+    width: 30vw;
+}
+
+.lightblue {
+    fill: var(--color-akutangulo);
+}
+
+#eye-wrap {
+    overflow: hidden;
+}
+
+.error-text {
+    font-size: 120px;
+}
+
+.alarm {
+    animation: alarmOn 0.5s infinite;
+}
+
+@keyframes alarmOn {
+    to {
+        fill: darkred;
+    }
+}
+
+.pagina-error {
+    text-align: center;
+}
+
+.pagina-error h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin: 0.5rem 0;
+}
+
+.pagina-error h2 {
+    font-size: clamp(2rem, 4.5vw, 3.8rem);
+    margin: 0.5rem 0;
+}
+
+.pagina-error h6 {
+    text-align: center;
+    font-size: clamp(1.2rem, 3vw, 2.8rem);
+    -webkit-text-stroke: 1px var(--color-texto);
+    margin: 0.5rem 0;
+}
+
+.help-actions {
+    text-align: left;
+    font-size: 1.2rem;
+    background-color: var(--color-fondo-secundario);
+    border-radius: 8px;
+    padding: 1rem;
+    max-width: 400px;
+    margin: 2rem auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+}
+
+.help-actions:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.help-actions p {
+    margin: 0;
+}
+
+.help-actions a {
+    display: inline-block;
+    font-weight: bold;
+    padding: 0.5rem 0;
+    color: var(--color-texto);
+}
+
+.help-actions a:hover {
+    color: var(--color-texto-secundario);
+    text-shadow: 1px 1px 1px var(--color-akutangulo);
+    font-size: 1.3rem;
+}
+
+@media (max-width: 768px) {
+    .pagina-error {
+        padding: 1rem;
+    }
+
+    svg {
+        width: 60vw;
+    }
+
+    .help-actions {
+        max-width: 90%;
+        margin: 1rem auto;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .pagina-error h1 {
+        font-size: 2rem;
+    }
+
+    .pagina-error h2 {
+        font-size: 1.8rem;
+    }
+
+    .pagina-error h6 {
+        font-size: 1.5rem;
+    }
+}
