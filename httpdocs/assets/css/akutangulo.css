@@ -1,0 +1,100 @@
+/*
+ * Copyright 2024 Akutangulo - navarr0
+ * Proprietary software of Akutangulo.com
+ * https://www.akutangulo.com
+ *
+ * Diseñado y creado con todo el amor del mundo por navarr0 de Akutangulo.com.
+ */
+
+/*************************************************
+ * Estilos generales de la página Akutangulo.com *
+ *************************************************/
+ @font-face {
+    font-family: 'bauhouse_akutangulo';
+    src: url('../fonts/bauhouse_akutangulo.eot'); /* archivo EOT para IE */ 
+    src: url('../fonts/bauhouse_akutangulo.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/bauhouse_akutangulo.ttf') format('truetype'); /* archivo TTF para navegadores CSS3 */ 
+    }
+    @import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+    :root {
+        --color-akutangulo: #9300D3; /* Color primario */
+        --color-secundario: #0ff; /* Color secundario */
+        --color-fondo: #121212; /* Fondo oscuro por defecto */
+        --color-fondo-secundario: #1E1E1E; /* Gris oscuro */
+        --color-texto: #f8f8f8; /* Texto claro por defecto */
+        --color-texto-secundario: #CCCCCC; /* Gris claro */   
+        --color-fondo-transparente: rgba(255, 255, 255, 0.8); /* Color de fondo semi-transparente */
+    }
+    
+    /* Tema Claro */
+    .tema-claro {
+        --color-fondo: #fafbfd; /* Blanco */
+        --color-fondo-secundario: #CCCCCC; /* Gris claro */
+        --color-texto: #191919; /* Negro */
+        --color-texto-secundario: #3f3f3f; /* Gris oscuro */
+        --color-fondo-transparente: rgba(30, 30, 30, 0.8); /* Color de fondo semi-transparente */
+    }
+    
+    body {
+        font-family: "Afacad Flux", sans-serif;
+        line-height: 1.4;
+        font-size: 1rem;
+        background-color: var(--color-fondo);
+        color: var(--color-texto);
+    }
+
+    @keyframes neon-color-change {
+        0%, 100% {
+            color: var(--color-secundario); 
+            /* Descomentar para efecto de luz neon */
+            /* text-shadow: 0 0 5px var(--color-secundario), 0 0 10px var(--color-secundario), 0 0 15px var(--color-secundario), 0 0 20px #00f, 0 0 30px #00f, 0 0 40px #00f; */
+        }
+        25% {
+            color: #f0f;
+            /* text-shadow: 0 0 5px #f0f, 0 0 10px #f0f, 0 0 15px #f0f, 0 0 20px #f0f, 0 0 30px #f0f, 0 0 40px #f0f; */
+        }
+        50% {
+            color: #ff0;
+            /* text-shadow: 0 0 5px #ff0, 0 0 10px #ff0, 0 0 15px #ff0, 0 0 20px #ff0, 0 0 30px #ff0, 0 0 40px #ff0; */
+        }
+        75% {
+            color: #0f0;
+            /* text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 15px #0f0, 0 0 20px #0f0, 0 0 30px #0f0, 0 0 40px #0f0; */
+        }
+        }
+        
+        .neon-text {
+        font-weight: 900;
+        animation: neon-color-change 30s infinite; /* Duración de 20 segundos para una transición más lenta */
+        transition: all 0.5s ease-in-out;
+        -webkit-text-stroke: 1px var(--color-texto-secundario);
+        }
+
+/*************************
+ * Footer Akutangulo.com *
+ *************************/
+     footer {
+        background-color: var(--color-akutangulo);
+        color: var(--color-texto);
+        text-align: center;
+        padding: 10px 20px;
+        margin: -7px; /* Eliminar margen por defecto */
+        font-size: 1.3rem; 
+    }
+
+    .akutangulo-diseño-web-seo {
+      font-family: 'bauhouse_akutangulo';
+      color: #9400D3;
+      font-size: 2rem;
+      text-decoration: none;
+    }
+    
+
+
+
+
+
+
+
+
