@@ -70,7 +70,7 @@
         transition: all 0.5s ease-in-out;
         -webkit-text-stroke: 1px var(--color-texto-secundario);
         }
-        
+
         .cta-button {
             background-color: var(--color-secundario);
             padding: 0.5rem 1rem;
@@ -84,6 +84,11 @@
             text-decoration: none;
             flex-wrap: wrap;
             display: inline-block;
+        }
+        .cta-button:hover {
+            background-color: var(--color-secundario);
+            padding: 0.7rem;
+            font-size: 1.1rem;
         }
 
 /**************************
