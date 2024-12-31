@@ -6,9 +6,13 @@
     --color-fondo: #121212; /* Fondo oscuro por defecto */
 
     --color-fondo-chatbot: #CCCCCC; 
+    --color-texto-chatbot: #CCCCCC;
+    --color-mensaje-usuario: #CCCCCC;
+    --color-mensaje-chatbot: #CCCCCC;
     --color-bordes-chatbot: #CCCCCC; 
     --color-boton-chatbot: #CCCCCC; 
     --color-texto-boton-chatbot: #CCCCCC;
+    --color-burbuja-chatbot: #CCCCCC;
 
     --color-texto: #f8f8f8; /* Texto claro por defecto */
     --color-texto-secundario: #CCCCCC; /* Gris claro */   
@@ -48,6 +52,19 @@
         box-shadow: 0 0 0 10px rgba(232, 76, 61, 0); /* Mantener el efecto se desvaneciendo */
     }
 }
+
+ /* Animación de rebote */
+ @keyframes rebote-bubble {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
 /* Estilo de la burbuja del chatbot */
 .chatbot-bubble {
     position: fixed;
@@ -77,20 +94,6 @@
     font-size: 2em;
     color: white;
 }
-
- /* Animación de rebote */
-@keyframes rebote-bubble {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(-10px);
-    }
-    60% {
-        transform: translateY(-5px);
-    }
-}
-
 
 
 /* Overlay para el efecto modal */
