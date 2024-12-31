@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Oscar Navarro Akutangulo">
+    <title>Chatbot ChatsBotsES</title>
+    <link rel="stylesheet" href="./assets/css/akutangulo.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="./assets/css/chatbot.css" type="text/css" media="screen">
+
+    <script src="https://kit.fontawesome.com/64393aa48f.js" crossorigin="anonymous" async></script>
+
+</head>
+<body>
+
+<!-- Overlay para el efecto modal -->
+<div id="chatbot-overlay" class="chatbot-overlay"></div>
+
+<!-- Burbuja del Chatbot -->
+<div id="chatbot-bubble" class="chatbot-bubble pulse neon-text">
+    <i class="fa fa-comments" aria-hidden="true" style="font-size: 2em; color: white;"></i>
+</div>
+
+<!-- Ventana del Chatbot -->
+<div id="chatbot-container" class="chatbot-container">
+    
+    <div class="chatbot-header">
+        <h3>Pregunta a la Inteligencia Artificial de <span class="akutangulo-diseño-web-seo">ChatsBotsES</span></h3>
+        <button id="close-chat" class="close-chat" title="Cierra el Chatbot de Akutangulo">X</button>   
+        
+    </div>
+    <div class="opciones-chatbot" style="background-color: red; margin: 1rem;">
+        <span class="theme-toggle" onclick="toggleTheme()">🌓</span>
+    <div id="storage-container">
+        <label id="storage-toggle-label" <!--style="display: none;"--> </label>
+            <input type="checkbox" id="storage-toggle"> Recordar la conversación
+        </label>
+    </div>
+    
+    </div>
+    <div id="chatbot-content" class="chatbot-content">
+        <!-- Mensajes del chatbot y usuario se agregarán aquí dinámicamente -->
+    </div>
+    <div class="chatbot-input-area">
+        <textarea id="chatbot-input" placeholder="Escribe tu consulta..."></textarea>
+        <button id="send-btn">Enviar</button>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const response = await fetch('chatbot_proxy.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ action: 'load_config' }) // Solicita la configuración
+        });
+
+        const data = await response.json();
+        document.getElementById('storage-toggle').checked = data.config.remember_conversation; // Establecer el estado del checkbox
+        
+        // Mostrar/ocultar el checkbox según la configuración
+        const storageToggleLabel = document.getElementById('storage-toggle-label');
+
+        if (data.config.show_storage_toggle) {
+            storageToggleLabel.style.display = 'block'; // Mostrar el checkbox
+        } else {
+            storageToggleLabel.style.display = 'none'; // Ocultar el checkbox
+        }
+
+    } catch (error) {
+        console.error('Error cargando la configuración:', error);
+    }
+});
+</script>
+
+
+<script src="./assets/js/chatbot.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.6/purify.min.js"></script>
+</body>
+</html>
