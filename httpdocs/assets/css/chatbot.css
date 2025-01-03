@@ -137,7 +137,7 @@
     }
 }
 
-.chatbot-header {
+/*.chatbot-header {
     background-color: var(--color-secundario);
     padding: 10px;
     border-radius: 13px;
@@ -151,7 +151,7 @@
     align-items: center;
     font-size: 1.2rem;
     letter-spacing: 1px
-}
+}*/
 
 .chatbot-content {
     padding: 10px;
@@ -222,13 +222,14 @@ textarea::placeholder {
     font-size: 1rem;
 }
 
-.close-chat {
+/*.close-chat {
+    margin-right: 10px;
     background: none;
     border: none;
     color: white;
     font-size: 1.5rem;
     cursor: pointer;
-}
+}*/
 
 /* Estilos para las burbujas de mensajes */
 .message {
