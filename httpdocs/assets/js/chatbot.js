@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-    /**************************************************
+/**************************************************
  * Script para cambiar el tema de oscuro a claro  *
  **************************************************/
     function toggleTheme() {
@@ -174,3 +174,38 @@ document.addEventListener('DOMContentLoaded', function () {
             document.body.classList.add('tema-claro');
         }
     });
+/*************************************************
+ * Script de las opciones del header del chatbot *
+ *************************************************/
+    document.addEventListener('DOMContentLoaded', async () => {
+        try {
+          const response = await fetch('chatbot_proxy.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'load_config' })
+          });
+          const data = await response.json();
+          document.getElementById('storage-toggle').checked = data.config.remember_conversation;
+          const storageToggleLabel = document.getElementById('storage-toggle-label');
+          if (data.config.show_storage_toggle) {
+            storageToggleLabel.style.display = 'block';
+          } else {
+            storageToggleLabel.style.display = 'none';
+          }
+        } catch (error) {
+          console.error('Error cargando la configuración:', error);
+        }
+  
+        const gearIcon = document.querySelector('.gear-icon');
+        const elementsToToggle = [
+          document.querySelector('.opciones-chatbot-header'),
+          document.querySelector('.inferior-header'),
+          document.querySelector('.contenido-opciones-chatbot-header'),
+          document.querySelector('.contenido-inferior-header')
+        ];
+        gearIcon.addEventListener('click', () => {
+          elementsToToggle.forEach(element => {
+            element.classList.toggle('inactive');
+          });
+        });
+      });
