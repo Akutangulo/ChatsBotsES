@@ -231,6 +231,249 @@ textarea::placeholder {
     cursor: pointer;
 }*/
 
+.chatbot-header,
+.text-container {
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: -1vh;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.chatbot-header {
+  filter: url(#goo);
+  z-index: 1;
+}
+
+.text-container {
+  color: white;
+  z-index: 2;
+  font-size: clamp(14px, 2.5vw, 20px);
+}
+
+.chatbot-header .top-header {
+  order: 1;
+}
+
+.chatbot-header .opciones-chatbot-header {
+  order: 2;
+}
+
+.chatbot-header .inferior-header {
+  order: 3;
+}
+
+.text-container .contenido-top-header {
+  order: 1;
+}
+
+.text-container .contenido-opciones-chatbot-header {
+  order: 2;
+}
+
+.text-container .contenido-inferior-header {
+  order: 3;
+}
+
+.inferior-header,
+.contenido-inferior-header {
+  width: 100%;
+  height: clamp(40px, 8vh, 60px);
+  position: relative;
+  z-index: 1;
+  animation: slide-reverse 2s ease-in-out 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inferior-header {
+  background: blue;
+  border-radius: clamp(5px, 1vw, 10px);
+}
+
+.opciones-chatbot-header,
+.top-header,
+.contenido-opciones-chatbot-header,
+.contenido-top-header {
+  width: 100%;
+  height: clamp(80px, 15vh, 120px);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.opciones-chatbot-header {
+  background: #0ff;
+  border-radius: clamp(5px, 1vw, 10px);
+  animation: slide-options-reverse 2s ease-in-out 1;
+}
+
+.top-header {
+  background: #9300D3;
+}
+
+.top-header,
+.contenido-top-header {
+  animation: slide-notification-reverse 2s ease-in-out 1;
+  animation-fill-mode: forwards;
+}
+
+.contenido-top-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.contenido-top-header h3 {
+  margin: 10px;
+  padding-right: 10px;
+  font-size: clamp(16px, 2.5vw, 24px);
+  line-height: 1.2;
+  flex-grow: 1;
+  word-break: break-word;
+}
+
+.close-chat {
+  flex-shrink: 0;
+  cursor: pointer;
+  font-size: 1.5em;
+  color: white;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease;
+}
+
+.close-chat:hover {
+  transform: scale(1.2);
+}
+
+.fa-solid.fa-gear {
+  flex-shrink: 0;
+  cursor: pointer;
+  font-size: 1.5em;
+  color: white;
+  margin-left: 10px;
+  transition: transform 0.5s ease;
+}
+
+.fa-solid.fa-gear:hover {
+  transform: rotate(180deg);
+}
+
+.opciones-chatbot-header.active,
+.inferior-header.active,
+.contenido-opciones-chatbot-header.active,
+.contenido-inferior-header.active {
+  animation: slide-reverse 2s ease-in-out 1;
+}
+
+.opciones-chatbot-header.inactive,
+.inferior-header.inactive,
+.contenido-opciones-chatbot-header.inactive,
+.contenido-inferior-header.inactive {
+  animation: slide-reverse 2s ease-in-out reverse;
+}
+
+.opciones-chatbot-header,
+.inferior-header,
+.contenido-opciones-chatbot-header,
+.contenido-inferior-header {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.opciones-chatbot-header.inactive,
+.inferior-header.inactive,
+.contenido-opciones-chatbot-header.inactive,
+.contenido-inferior-header.inactive {
+  opacity: 0;
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+.chatbot-container.chatbot-open .opciones-chatbot-header,
+.chatbot-container.chatbot-open .inferior-header,
+.chatbot-container.chatbot-open .contenido-opciones-chatbot-header,
+.chatbot-container.chatbot-open .contenido-inferior-header {
+  animation: slide-in 1s ease;
+}
+
+.opciones-chatbot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: red;
+  margin: 1rem;
+}
+
+.storage-container {
+  align-self: flex-start;
+}
+
+@keyframes slide-reverse {
+  0% { transform: translateY(-200%); }
+  45% { transform: translateY(10%); }
+  50% { transform: translateY(10%); }
+  75% { transform: translateY(-20%); }
+  100% { transform: translateY(-20%); }
+}
+
+@keyframes slide-notification-reverse {
+  0% {
+    transform: translateY(-120%);
+    width: 70%;
+    height: clamp(40px, 8vh, 60px);
+  }
+  50% {
+    transform: translateY(0%);
+    width: 100%;
+    height: clamp(80px, 15vh, 120px);
+  }
+  100% {
+    transform: translateY(-10%);
+    width: 100%;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 /* Estilos para las burbujas de mensajes */
 .message {
     margin: 10px;
