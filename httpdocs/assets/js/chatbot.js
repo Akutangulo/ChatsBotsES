@@ -177,9 +177,10 @@ document.addEventListener('DOMContentLoaded', function () {
 /*************************************************
  * Script de las opciones del header del chatbot *
  *************************************************/
+// cargar la configuración y mostrar/ocultar la casilla para que el chatbot recuerde la conversación
     document.addEventListener('DOMContentLoaded', async () => {
         try {
-          const response = await fetch('chatbot_proxy.php', {
+          const response = await fetch('../../chatbot_proxy.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ action: 'load_config' })
@@ -195,7 +196,8 @@ document.addEventListener('DOMContentLoaded', function () {
         } catch (error) {
           console.error('Error cargando la configuración:', error);
         }
-  
+
+        // mostrar y ocultar elementos al hacer clic en el icono de configuración
         const gearIcon = document.querySelector('.gear-icon');
         const elementsToToggle = [
           document.querySelector('.opciones-chatbot-header'),
