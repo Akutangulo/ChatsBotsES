@@ -92,18 +92,32 @@ document.addEventListener('DOMContentLoaded', function () {
     function sendMessage() {
         const userMessage = chatbotInput.value.trim();
         if (userMessage === '') return;
-
+    
         // Mostrar mensaje del usuario
         displayMessage('user', userMessage);
         chatbotInput.value = '';
         chatbotInput.style.height = 'auto';
-
-        // Mostrar spinner chatbot-pensando mientras se espera la respuesta
-        const spinner = document.createElement('div');
-        spinner.className = 'spinner';
-        chatbotContent.appendChild(spinner);
+    
+        // Mostrar animación chatbot-pensando mientras se espera la respuesta
+        const chatbotPensando = document.createElement('div');
+        chatbotPensando.className = 'chatbot-pensando';
+    
+        // Crear las neuronas (barras animadas)
+        for (let i = 1; i <= 10; i++) {
+            const neurona = document.createElement('span');
+            neurona.className = `neurona neurona-${i}`;
+            chatbotPensando.appendChild(neurona);
+        }
+    
+        // Añadir el texto "ChatBot Pensando"
+        const textoPensando = document.createElement('div');
+        textoPensando.textContent = 'ChatBot Pensando';
+        chatbotPensando.appendChild(textoPensando);
+    
+        // Añadir el contenedor de la animación al contenido del chatbot
+        chatbotContent.appendChild(chatbotPensando);
         chatbotContent.scrollTop = chatbotContent.scrollHeight;
-
+    
         // Enviar mensaje al servidor con conversationId y remember_conversation
         fetch('../../chatbot_proxy.php', {
             method: 'POST',
@@ -118,14 +132,14 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(response => response.json())
         .then(data => {
-            // Remover spinner chatbot-pensando
-            spinner.remove();
+            // Remover animación chatbot-pensando
+            chatbotPensando.remove();
             // Mostrar respuesta del chatbot lentamente
             typeWriterEffect('bot', data.response);
         })
         .catch(error => {
             console.error('Error:', error);
-            spinner.remove();
+            chatbotPensando.remove();
             displayMessage('bot', 'Hubo un error, por favor intentalo de nuevo.');
         });
     }
