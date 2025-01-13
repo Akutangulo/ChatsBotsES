@@ -469,27 +469,23 @@ textarea::placeholder {
     margin-right: 20%;
 }
 
-
-
-
-/* Estilo para el spinner */
-.spinner {
-    border: 5px solid rgba(0, 0, 0, 0.1);
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border-left-color: var(--color-akutangulo);
-    animation: spin 1s ease infinite;
-    margin: 10px auto;
+/* Estilo para el spinner preloader */
+.chatbot-pensando { 
+  color: #0ff; 
+  margin: 5px 0; 
+  text-transform: uppercase; 
+  text-align: center; 
+  font-family: 'Arial', sans-serif; 
+  font-size: 10px; 
+  letter-spacing: 2px; 
 }
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+.chatbot-pensando .neurona { 
+  width: 1px; 
+  height: 12px; 
+  background: #0ff; 
+  margin: 0 1px; 
+  display: inline-block; 
+  animation: opacity-2 1000ms infinite ease-in-out; 
 }
 
 
