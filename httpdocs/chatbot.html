@@ -16,35 +16,60 @@
 <div id="chatbot-overlay" class="chatbot-overlay"></div>
 
 <!-- Burbuja del Chatbot -->
-<div id="chatbot-bubble" class="chatbot-bubble pulse neon-text">
+<div id="chatbot-bubble" class="chatbot-bubble pulse" title="Haz clic para abrir el Chatbot de ChatsBotsES">
     <i class="fa fa-comments" aria-hidden="true" style="font-size: 2em; color: white;"></i>
-</div>
-
-<!-- Ventana del Chatbot -->
-<div id="chatbot-container" class="chatbot-container">
-    
+  </div>
+  <!-- Ventana del Chatbot -->
+  <div id="chatbot-container" class="chatbot-container chatbot-open">
     <div class="chatbot-header">
-        <h3>Pregunta a la Inteligencia Artificial de <span class="akutangulo-diseño-web-seo">ChatsBotsES</span></h3>
-        <button id="close-chat" class="close-chat" title="Cierra el Chatbot de Akutangulo">X</button>   
-        
+      <div class="top-header"></div>
+      <div class="opciones-chatbot-header"></div>
+      <div class="inferior-header"></div>
     </div>
-    <div class="opciones-chatbot" style="background-color: red; margin: 1rem;">
-        <span class="theme-toggle" onclick="toggleTheme()">🌓</span>
-    <div id="storage-container">
-        <label id="storage-toggle-label" <!--style="display: none;"--> </label>
-            <input type="checkbox" id="storage-toggle"> Recordar la conversación
-        </label>
-    </div>
+    <div class="text-container">
+      <div class="contenido-top-header">
+        <h3>Pregunta a la Inteligencia Artificial de ChatsBotsES</h3>
+        <i class="fa-solid fa-gear gear-icon" title="Muestra las opciones del Chatbot de Akutangulo"></i>
+        <button id="close-chat" class="close-chat" title="Cierra el Chatbot de Akutangulo">X</button>
+      </div>
+      <div class="contenido-opciones-chatbot-header">
+        <div class="opciones-chatbot">
+          <span class="theme-toggle" onclick="toggleTheme()">🌓</span>
+          <div class="storage-container" id="storage-container">
+            <label id="storage-toggle-label" <!--style="display: none;"--> </label>
+              <input type="checkbox" id="storage-toggle"> Recordar la conversación
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="contenido-inferior-header">
+        <span>Notification3</span>
+      </div>
     </div>
     
     <div id="chatbot-content" class="chatbot-content">
-        <!-- Mensajes del chatbot y usuario se agregarán aquí dinámicamente -->
+      <!-- Mensajes del chatbot y usuario se agregarán aquí dinámicamente -->
     </div>
     <div class="chatbot-input-area">
-        <textarea id="chatbot-input" placeholder="Escribe tu consulta..."></textarea>
-        <button id="send-btn">Enviar</button>
+      <textarea id="chatbot-input" placeholder="Escribe tu consulta..."></textarea>
+      <button id="send-btn">Enviar</button>
     </div>
-</div>
+  </div>
+  
+  <svg id="filter">
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur result="blurred" in="SourceGraphic" stdDeviation="9"></feGaussianBlur>
+          <feColorMatrix
+            result="adjusted"
+            in="blurred"
+            values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 15 -10"
+            type="matrix">
+          </feColorMatrix>
+          <feComposite result="combined" in="adjusted" operator="atop"></feComposite>
+        </filter>
+      </defs>
+    </svg>
 
 <script>
 document.addEventListener('DOMContentLoaded', async () => {
