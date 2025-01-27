@@ -1,7 +1,6 @@
 # Carpeta p ignorada
 httpdocs/p/
 
-
 # Logs
 logs
 *.log
