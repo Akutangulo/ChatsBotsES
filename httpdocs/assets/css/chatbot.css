@@ -471,7 +471,7 @@ textarea::placeholder {
 
 /* Estilo para el spinner preloader */
 .chatbot-pensando { 
-  color: #0ff; 
+  color: var(--color-akutangulo); 
   margin: 5px 0; 
   text-transform: uppercase; 
   text-align: center; 
@@ -482,7 +482,7 @@ textarea::placeholder {
 .chatbot-pensando .neurona { 
   width: 1px; 
   height: 12px; 
-  background: #0ff; 
+  background: var(--color-akutangulo); 
   margin: 0 1px; 
   display: inline-block; 
   animation: opacity-2 1000ms infinite ease-in-out; 
