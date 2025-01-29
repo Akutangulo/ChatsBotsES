@@ -471,7 +471,7 @@ textarea::placeholder {
 
 /* Estilo para el spinner preloader */
 .chatbot-pensando { 
-  color: var(--color-akutangulo); 
+  color: #9300D3; 
   margin: 5px 0; 
   text-transform: uppercase; 
   text-align: center; 
@@ -482,13 +482,27 @@ textarea::placeholder {
 .chatbot-pensando .neurona { 
   width: 1px; 
   height: 12px; 
-  background: var(--color-akutangulo); 
+  background: #9300D3; 
   margin: 0 1px; 
   display: inline-block; 
   animation: opacity-2 1000ms infinite ease-in-out; 
 }
 
-
+.chatbot-pensando .neurona-1 { animation-delay: 800ms; }
+.chatbot-pensando .neurona-2 { animation-delay: 600ms; }
+.chatbot-pensando .neurona-3 { animation-delay: 400ms; }
+.chatbot-pensando .neurona-4 { animation-delay: 200ms; }
+.chatbot-pensando .neurona-5 { animation-delay: 0ms; }
+.chatbot-pensando .neurona-6 { animation-delay: 300ms; }
+.chatbot-pensando .neurona-7 { animation-delay: 500ms; }
+.chatbot-pensando .neurona-8 { animation-delay: 700ms; }
+.chatbot-pensando .neurona-9 { animation-delay: 900ms; }
+.chatbot-pensando .neurona-10 { animation-delay: 800ms; }
+    @keyframes opacity-2 { 
+      0%, 100% { opacity: 1; height: 15px; }
+      50% { opacity: 0; height: 12px; }
+  }
+  
 /*
 .theme-toggle {
     position: absolute;
