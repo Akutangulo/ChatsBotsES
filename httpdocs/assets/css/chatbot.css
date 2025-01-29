@@ -65,6 +65,7 @@
         transform: translateY(-5px);
     }
 }
+
 /* Estilo de la burbuja del chatbot */
 .chatbot-bubble {
     position: fixed;
@@ -502,7 +503,7 @@ textarea::placeholder {
       0%, 100% { opacity: 1; height: 15px; }
       50% { opacity: 0; height: 12px; }
   }
-  
+
 /*
 .theme-toggle {
     position: absolute;
