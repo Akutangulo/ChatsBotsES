@@ -187,65 +187,74 @@
 
 <button id="back-to-top-btn" title="Back to Top" style="display:none;">𖤂</button>
 
-
-<!-- Overlay para el efecto modal -->
+<!-- Overlay para el efecto modal -->  
 <div id="chatbot-overlay" class="chatbot-overlay"></div>
 
-<!-- Burbuja del Chatbot -->
-<div id="chatbot-bubble" class="chatbot-bubble pulse neon-text">
-  <i class="fa fa-comments" aria-hidden="true" style="font-size: 2em; color: white;"></i>
-</div>
-<!-- Ventana del Chatbot -->
-<div id="chatbot-container" class="chatbot-container chatbot-open">
-  <div class="chatbot-header">
-    <div class="top-header"></div>
-    <div class="opciones-chatbot-header"></div>
-    <div class="inferior-header"></div>
+<!-- Burbuja del Chatbot -->  
+  <div id="chatbot-bubble" class="chatbot-bubble pulse neon-text">
+    <i class="fa fa-comments" aria-hidden="true" style="font-size: 2em; color: white;"></i>
   </div>
-  <div class="text-container">
-    <div class="contenido-top-header">
-      <h3>Pregunta a la Inteligencia Artificial de ChatsBotsES</h3>
-      <i class="fa-solid fa-gear gear-icon" title="Muestra las opciones del Chatbot de Akutangulo"></i>
-      <button id="close-chat" class="close-chat" title="Cierra el Chatbot de Akutangulo">X</button>
+
+<!-- Ventana del Chatbot -->
+  <div id="chatbot-container" class="chatbot-container chatbot-open">
+
+<!-- Mensajes del chatbot y usuario se agregarán aquí dinámicamente -->
+    <div id="chatbot-content" class="chatbot-content">
+
+    <div class="chatbot-header">
+      <div class="top-header"></div>
+      <div class="opciones-chatbot-header"></div>
+      <div class="inferior-header"></div>
     </div>
-    <div class="contenido-opciones-chatbot-header">
-      <div class="opciones-chatbot">
-        <span class="theme-toggle" onclick="toggleTheme()">🌓</span>
-        <div class="storage-container" id="storage-container">
-          <label id="storage-toggle-label" <!--style="display: none;"--> </label>
-            <input type="checkbox" id="storage-toggle"> Recordar la conversación
-          </label>
+    <div class="text-container">
+      <div class="contenido-top-header">
+        <h3>Pregunta a la Inteligencia Artificial de ChatsBotsES</h3>
+        <i class="fa-solid fa-gear gear-icon" title="Muestra las opciones del Chatbot de Akutangulo"></i>
+        <button id="close-chat" class="close-chat" title="Cierra el Chatbot de Akutangulo">X</button>
+      </div>
+      <div class="contenido-opciones-chatbot-header">
+        <div class="opciones-chatbot">
+          <span class="theme-toggle" onclick="toggleTheme()">🌓</span>
+          <div class="storage-container" id="storage-container">
+            <label id="storage-toggle-label">
+              <input type="checkbox" id="storage-toggle"> Recordar la conversación
+            </label>
+          </div>
+
+          <div>
+            <label>
+              <input type="checkbox"> Otro checkbox
+            </label>
+          </div>
+
         </div>
       </div>
+      <div class="contenido-inferior-header">
+        <span>Notification3</span>
+      </div>
     </div>
-    <div class="contenido-inferior-header">
-      <span>Notification3</span>
-    </div>
-  </div>
-  
-  <div id="chatbot-content" class="chatbot-content">
-    <!-- Mensajes del chatbot y usuario se agregarán aquí dinámicamente -->
-  </div>
-  <div class="chatbot-input-area">
-    <textarea id="chatbot-input" placeholder="Escribe tu consulta..."></textarea>
-    <button id="send-btn">Enviar</button>
-  </div>
-</div>
+    <svg id="filter">
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur result="blurred" in="SourceGraphic" stdDeviation="9"></feGaussianBlur>
+          <feColorMatrix
+            result="adjusted"
+            in="blurred"
+            values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 15 -10"
+            type="matrix">
+          </feColorMatrix>
+          <feComposite result="combined" in="adjusted" operator="atop"></feComposite>
+        </filter>
+      </defs>
+    </svg>
 
-<svg id="filter">
-    <defs>
-      <filter id="goo">
-        <feGaussianBlur result="blurred" in="SourceGraphic" stdDeviation="9"></feGaussianBlur>
-        <feColorMatrix
-          result="adjusted"
-          in="blurred"
-          values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 15 -10"
-          type="matrix">
-        </feColorMatrix>
-        <feComposite result="combined" in="adjusted" operator="atop"></feComposite>
-      </filter>
-    </defs>
-  </svg>
+      <!-- Mensajes del chatbot y usuario se agregarán aquí dinámicamente -->
+    </div>
+    <div class="chatbot-input-area">
+      <textarea id="chatbot-input" placeholder="Escribe tu consulta..."></textarea>
+      <button id="send-btn">Enviar</button>
+    </div>
+  </div>
 
     <script>
     document.addEventListener('DOMContentLoaded', async () => {
