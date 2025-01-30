@@ -93,50 +93,58 @@
       </div>
   </section>
 
-  <section class="bubble right">
-      <h2 class="neon-text">¿Cómo Funciona?</h2>
-      <div class="mermaid">
+
+    <section class="bubble show">
+        <h2>¿Cómo Funciona?</h2>
+<div class="mermaid">
         graph TD
-              A((😎 Usuario)) --> B[1.Consulta del Usuario];
-              B --> C[/2.ChatsBotsES 🤖/];
-              C --> D(3.Envía la consulta del usuario + instrucciones del sistema o prompt + los datos añadidos a la memoria 🤖);
-              D --> E{LLM de IA};
-              E --> F(4.Analiza la memoria, busca los resultados más relevantes y los devuelve al Chatbot para añadirlos a la respuesta 🤖);
-              F --> H(5.El Chatbot selecciona las mejores respuestas para responder al usuario con los datos relevantes de la memoria para su respuesta);
-              H --> E;
-              E --> I(6.Respuesta final de la Inteligencia Artificial con los datos relevantes para responder al usuario que le ha enviado el chatbot);
-              I --> J(7.El Chatbot comprueba que los datos ofrecidos en la respuesta son correctos y los corrige si fuera necesario 🤖);
-              J --> K[/8.El Chatbot envía la respuesta al usuario 🤖/];
-              K --> A;
-      
-              style A fill:#0ff,stroke:#00ff00,stroke-width:6px, color:#9300D3, font-size: 2rem
-              style E fill:#c9f9ba,stroke:#00ffff,stroke-width:4px, font-size: 2rem
-              style D fill:#c9f9ba,stroke:#00ff00,stroke-width:2px, font-size: 1.5rem
-              style H fill:#d8b6ff,stroke:#9300D3,stroke-width:2px, font-size: 1.5rem
-              style C fill:#9300D3,stroke:#9300D3,stroke-width:3px, color:#ccc, stroke:#9300D3, font-size: 2rem
+        A((😎 Usuario)) --> B[😎 Consulta del Usuario];
+        B --> C[/1.Chatbot 🤖/];
+        C --> D(2.Envía la consulta del usuario + instrucciones del sistema o prompt + los datos añadidos a la memoria 🤖);
+        D --> E{LLM de IA};
+        E --> F(3.El LLM con Inteligencia Artificial prepara la respuesta para el chatbot);
+        F --> G[/4.Chatbot 🤖/];
+        G --> H(5.Analiza la memoria, busca los mejores resultados y los devuelve al LLM con Inteligencia Artificial);
+        H --> E;
+        E --> I(6.Respuesta final de la Inteligencia Artificial con los datos de la memoria);
+        I --> J(7.El Chatbot comprueba que los datos ofrecidos en la respuesta son correctos y los corrige si fuera necesario 🤖);
+        J --> K[/8.El chatbot envía la respuesta al usuario 🤖/];
+        K --> A;
 
-              style F fill:#c9f9ba,stroke:#00ffff,stroke-width:2px, font-size: 1.5rem
+        style A fill:#0ff,stroke:#00ff00,stroke-width:6px, color:#9300D3
+        style E fill:#c9f9ba,stroke:#00ffff,stroke-width:4px
+        style D fill:#c9f9ba,stroke:#9300D3,stroke-width:2px
 
-              style I fill:#d8b6ff,stroke:#9300D3,stroke-width:2px, font-size: 1.5rem
-              style J fill:#9300D3,stroke:#9300D3,stroke-width:2px, color:#ccc, stroke:#9300D3, font-size: 1.5rem
-              style K fill:#9300D3,stroke:#9300D3,stroke-width:2px, color:#ccc, stroke:#9300D3, font-size:1.5rem
-      
-              classDef boxes fill:#FFFADD,stroke:#9300D3,stroke-width:2px, font-size: 2rem
-              class B,K boxes
-      
-              linkStyle 0 stroke:#00ff00,stroke-width:6px;
-              linkStyle 1 stroke:#00ff00,stroke-width:6px;
-              linkStyle 2 stroke:#00ff00,stroke-width:6px;
-              linkStyle 3 stroke:#00ff00,stroke-width:6px;
-              linkStyle 4 stroke:#00ffff,stroke-width:5px;
-              linkStyle 5 stroke:#00ffff,stroke-width:5px;
-              linkStyle 6 stroke:#00ffff,stroke-width:5px;
-              linkStyle 7 stroke:#ff00ff,stroke-width:4px;
-              linkStyle 8 stroke:#ff00ff,stroke-width:4px;
-              linkStyle 9 stroke:#ff00ff,stroke-width:4px;
-              linkStyle 10 stroke:#9300D3,stroke-width:7px;
-      </div>
-  </section>
+        style H fill:#d8b6ff,stroke:#9300D3,stroke-width:2px
+        style C fill:#9300D3,stroke:#9300D3,stroke-width:3px, color:#ccc, stroke:#9300D3
+
+        style F fill:#c9f9ba,stroke:#9300D3,stroke-width:2px
+
+        style G fill:#9300D3,stroke:#9300D3,stroke-width:3px, color:#ccc, stroke:#9300D3
+        style I fill:#d8b6ff,stroke:#9300D3,stroke-width:2px
+        style J fill:#9300D3,stroke:#9300D3,stroke-width:2px, color:#ccc, stroke:#9300D3
+        style K fill:#9300D3,stroke:#9300D3,stroke-width:2px, color:#ccc, stroke:#9300D3
+        classDef boxes fill:#FFFADD,stroke:#9300D3,stroke-width:2px
+        class B,K boxes
+
+                  linkStyle 0 stroke:#00ff00,stroke-width:3px,stroke-dasharray: 5 2; 
+                  linkStyle 1 stroke:#00ff00,stroke-width:3px,stroke-dasharray: 5 2;
+                  linkStyle 2 stroke:#00ff00,stroke-width:3px,stroke-dasharray: 5 2;
+                  linkStyle 3 stroke:#00ff00,stroke-width:3px,stroke-dasharray: 5 2;
+                  linkStyle 4 stroke:#00ffff,stroke-width:2px,stroke-dasharray: 10 5;
+                  linkStyle 5 stroke:#00ffff,stroke-width:2px,stroke-dasharray: 10 5;
+                  linkStyle 6 stroke:#00ffff,stroke-width:2px,stroke-dasharray: 10 5;
+                  linkStyle 7 stroke:#00ffff,stroke-width:2px,stroke-dasharray: 10 5;
+                  linkStyle 8 stroke:#ff00ff,stroke-width:1px,stroke-dasharray: 10 2;
+                  linkStyle 9 stroke:#ff00ff,stroke-width:1px,stroke-dasharray: 10 2;
+                  linkStyle 10 stroke:#ff00ff,stroke-width:1px,stroke-dasharray: 10 2;
+                  linkStyle 11 stroke:#9300D3,stroke-width:3px,stroke-dasharray: 10 5;
+    </div>
+		<h2 class="neon-text">Conecta. Conversa. Triunfa.</h2>
+    </section>
+
+
+
 
   <section class="bubble left">
       <h1 class="neon-text">Preguntas Frecuentes</h1>
