@@ -1,4 +1,3 @@
-// chatbot.js
 document.addEventListener('DOMContentLoaded', function () {
     const chatbotBubble = document.getElementById('chatbot-bubble');
     const chatbotContainer = document.getElementById('chatbot-container');
@@ -65,6 +64,25 @@ document.addEventListener('DOMContentLoaded', function () {
         chatbotContainer.style.display = 'flex';
         chatbotOverlay.style.display = 'block';
         chatbotBubble.style.display = 'none';
+        
+        // Deshabilitar el scroll de la página principal
+        document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden'; // Asegurar que el scroll esté deshabilitado en todos los navegadores
+
+        // *** Lógica para el cierre automático (solo al abrir con la burbuja) ***
+        const opcionesHeader = document.querySelector('.opciones-chatbot-header');
+        const contenidoOpcionesHeader = document.querySelector('.contenido-opciones-chatbot-header');
+        const inferiorHeader = document.querySelector('.inferior-header');
+        const contenidoInferiorHeader = document.querySelector('.contenido-inferior-header');
+        const elementsToAutoHide = [opcionesHeader, contenidoOpcionesHeader, inferiorHeader, contenidoInferiorHeader];
+
+        // Esperar 5 segundos para que se vea la animación de entrada, y luego cerrar
+        setTimeout(() => {
+            elementsToAutoHide.forEach(element => {
+                element.classList.add('inactive');
+            });
+        }, 5000);
+        // *** Fin de lógica para el cierre automático  ***
     });
 
     // Cerrar el chatbot
@@ -72,6 +90,10 @@ document.addEventListener('DOMContentLoaded', function () {
         chatbotContainer.style.display = 'none';
         chatbotOverlay.style.display = 'none';
         chatbotBubble.style.display = 'flex';
+        
+        // Habilitar el scroll de la página principal
+        document.body.style.overflow = 'auto';
+        document.documentElement.style.overflow = 'auto'; // Asegurar que el scroll esté habilitado en todos los navegadores
     });
 
     // Autoajustar la altura del textarea
@@ -175,94 +197,55 @@ document.addEventListener('DOMContentLoaded', function () {
 /**************************************************
  * Script para cambiar el tema de oscuro a claro  *
  **************************************************/
-    function toggleTheme() {
-        document.body.classList.toggle('tema-claro');
-        const theme = document.body.classList.contains('tema-claro') ? 'light' : 'dark';
-        localStorage.setItem('theme', theme);
+function toggleTheme() {
+    document.body.classList.toggle('tema-claro');
+    const theme = document.body.classList.contains('tema-claro') ? 'light' : 'dark';
+    localStorage.setItem('theme', theme);
+}
+
+// Aplicar tema almacenado al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme === 'light') {
+        document.body.classList.add('tema-claro');
     }
-    
-    // Aplicar tema almacenado al cargar la página
-    document.addEventListener('DOMContentLoaded', () => {
-        const storedTheme = localStorage.getItem('theme');
-        if (storedTheme === 'light') {
-            document.body.classList.add('tema-claro');
-        }
-    });
-/*************************************************
- * Script de las opciones del header del chatbot *
- *************************************************/
-// cargar la configuración y mostrar/ocultar la casilla para que el chatbot recuerde la conversación
-document.addEventListener('DOMContentLoaded', function () {
-    const chatbotBubble = document.getElementById('chatbot-bubble');
-    const chatbotContainer = document.getElementById('chatbot-container');
-    const chatbotOverlay = document.getElementById('chatbot-overlay');
-    const closeChatButton = document.getElementById('close-chat');
+});
 
-       // Mostrar el chatbot al hacer clic en la burbuja
-       chatbotBubble.addEventListener('click', function () {
-        chatbotContainer.style.display = 'flex';
-        chatbotOverlay.style.display = 'block';
-        chatbotBubble.style.display = 'none';
-
-        // *** Lógica para el cierre automático (solo al abrir con la burbuja) ***
-        const opcionesHeader = document.querySelector('.opciones-chatbot-header');
-        const contenidoOpcionesHeader = document.querySelector('.contenido-opciones-chatbot-header');
-        const inferiorHeader = document.querySelector('.inferior-header');
-        const contenidoInferiorHeader = document.querySelector('.contenido-inferior-header');
-        const elementsToAutoHide = [opcionesHeader, contenidoOpcionesHeader, inferiorHeader, contenidoInferiorHeader];
-
-        // Esperar 5 segundos para que se vea la animación de entrada, y luego cerrar
-        setTimeout(() => {
-          elementsToAutoHide.forEach(element => {
-            element.classList.add('inactive');
-          });
-        }, 5000); 
-        // *** Fin de lógica para el cierre automático  ***
-
-    });
-
-    // Cerrar el chatbot
-    closeChatButton.addEventListener('click', function () {
-        chatbotContainer.style.display = 'none';
-        chatbotOverlay.style.display = 'none';
-        chatbotBubble.style.display = 'flex';
-    });
-  });
 /*************************************************
  * Script de las opciones del header del chatbot *
  *************************************************/
 // cargar la configuración y mostrar/ocultar la casilla para que el chatbot recuerde la conversación
 document.addEventListener('DOMContentLoaded', async () => {
-        try {
-          const response = await fetch('../../chatbot_proxy.php', {
+    try {
+        const response = await fetch('../../chatbot_proxy.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ action: 'load_config' })
-          });
-          const data = await response.json();
-          document.getElementById('storage-toggle').checked = data.config.remember_conversation;
-          const storageToggleLabel = document.getElementById('storage-toggle-label');
-          if (data.config.show_storage_toggle) {
-            storageToggleLabel.style.display = 'block';
-          } else {
-            storageToggleLabel.style.display = 'none';
-          }
-        } catch (error) {
-          console.error('Error cargando la configuración:', error);
-        }
-
-        // mostrar y ocultar elementos al hacer clic en el icono de configuración
-        const gearIcon = document.querySelector('.gear-icon');
-        const elementsToToggle = [
-          document.querySelector('.opciones-chatbot-header'),
-          document.querySelector('.inferior-header'),
-          document.querySelector('.contenido-opciones-chatbot-header'),
-          document.querySelector('.contenido-inferior-header')
-        ];
-
-        gearIcon.addEventListener('click', () => {
-          elementsToToggle.forEach(element => {
-            element.classList.toggle('inactive');
-          });
         });
-      });
+        const data = await response.json();
+        document.getElementById('storage-toggle').checked = data.config.remember_conversation;
+        const storageToggleLabel = document.getElementById('storage-toggle-label');
+        if (data.config.show_storage_toggle) {
+            storageToggleLabel.style.display = 'block';
+        } else {
+            storageToggleLabel.style.display = 'none';
+        }
+    } catch (error) {
+        console.error('Error cargando la configuración:', error);
+    }
+
+    // mostrar y ocultar elementos al hacer clic en el icono de configuración
+    const gearIcon = document.querySelector('.gear-icon');
+    const elementsToToggle = [
+        document.querySelector('.opciones-chatbot-header'),
+        document.querySelector('.inferior-header'),
+        document.querySelector('.contenido-opciones-chatbot-header'),
+        document.querySelector('.contenido-inferior-header')
+    ];
+
+    gearIcon.addEventListener('click', () => {
+        elementsToToggle.forEach(element => {
+            element.classList.toggle('inactive');
+        });
+    });
+});
