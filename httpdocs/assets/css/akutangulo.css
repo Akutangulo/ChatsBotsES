@@ -186,7 +186,47 @@
       }
       }
 
+    .mermaid { 
+        flex: 1;
+    }
 
+    .mermaid {
+        height: auto;
+    }
+
+    .flowchart-link {
+  animation: animacion-linea-mermaid 0.3s linear infinite; /*  Hemos cambiado el nombre de la animación a 'animacion-linea-mermaid' para claridad */
+  stroke-dashoffset: 15px; /*  Añadimos stroke-dashoffset inicial */
+}
+
+@keyframes animacion-linea-mermaid { /*  Nombre de keyframes cambiado para coincidir */
+  to {
+    stroke-dashoffset: 0; /*  Animamos stroke-dashoffset a 0 */
+  }
+}
+
+    /* Media queries para móviles -  Texto más grande y apilar verticalmente */
+    @media (max-width: 768px) {
+        .mermaid {
+            width: 100%; /* Ancho completo en móviles */
+        }
+
+        /*  Agrupamos selectores de texto Mermaid en móviles */
+        .mermaid .nodeLabel,
+        .mermaid .edgeLabel,
+        .mermaid .label {
+            font-size: 1.2rem !important; /* Tamaño de texto aumentado en móviles */
+        }
+    }
+
+    /* Media query para pantallas muy pequeñas - Aumentar texto aún más */
+    @media (max-width: 480px) {
+        .mermaid .nodeLabel,
+        .mermaid .edgeLabel,
+        .mermaid .label {
+            font-size: 1.4rem !important; /* Tamaño de texto aumentado en pantallas muy pequeñas */
+        }
+    }
 
 
 
