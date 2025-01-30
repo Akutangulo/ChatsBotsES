@@ -192,7 +192,47 @@ document.addEventListener('DOMContentLoaded', function () {
  * Script de las opciones del header del chatbot *
  *************************************************/
 // cargar la configuración y mostrar/ocultar la casilla para que el chatbot recuerde la conversación
-    document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', function () {
+    const chatbotBubble = document.getElementById('chatbot-bubble');
+    const chatbotContainer = document.getElementById('chatbot-container');
+    const chatbotOverlay = document.getElementById('chatbot-overlay');
+    const closeChatButton = document.getElementById('close-chat');
+
+       // Mostrar el chatbot al hacer clic en la burbuja
+       chatbotBubble.addEventListener('click', function () {
+        chatbotContainer.style.display = 'flex';
+        chatbotOverlay.style.display = 'block';
+        chatbotBubble.style.display = 'none';
+
+        // *** Lógica para el cierre automático (solo al abrir con la burbuja) ***
+        const opcionesHeader = document.querySelector('.opciones-chatbot-header');
+        const contenidoOpcionesHeader = document.querySelector('.contenido-opciones-chatbot-header');
+        const inferiorHeader = document.querySelector('.inferior-header');
+        const contenidoInferiorHeader = document.querySelector('.contenido-inferior-header');
+        const elementsToAutoHide = [opcionesHeader, contenidoOpcionesHeader, inferiorHeader, contenidoInferiorHeader];
+
+        // Esperar 5 segundos para que se vea la animación de entrada, y luego cerrar
+        setTimeout(() => {
+          elementsToAutoHide.forEach(element => {
+            element.classList.add('inactive');
+          });
+        }, 5000); 
+        // *** Fin de lógica para el cierre automático  ***
+
+    });
+
+    // Cerrar el chatbot
+    closeChatButton.addEventListener('click', function () {
+        chatbotContainer.style.display = 'none';
+        chatbotOverlay.style.display = 'none';
+        chatbotBubble.style.display = 'flex';
+    });
+  });
+/*************************************************
+ * Script de las opciones del header del chatbot *
+ *************************************************/
+// cargar la configuración y mostrar/ocultar la casilla para que el chatbot recuerde la conversación
+document.addEventListener('DOMContentLoaded', async () => {
         try {
           const response = await fetch('../../chatbot_proxy.php', {
             method: 'POST',
@@ -219,6 +259,7 @@ document.addEventListener('DOMContentLoaded', function () {
           document.querySelector('.contenido-opciones-chatbot-header'),
           document.querySelector('.contenido-inferior-header')
         ];
+
         gearIcon.addEventListener('click', () => {
           elementsToToggle.forEach(element => {
             element.classList.toggle('inactive');
