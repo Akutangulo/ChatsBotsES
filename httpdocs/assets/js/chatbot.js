@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 /*********************************************************************
- * Funcion para mostrar el estado del serviicio de la API de Open AI *
+ * Funcion para mostrar el estado del servicio de la API de Open AI *
  *********************************************************************/
 // Función IDÉNTICA a la del panel-de-control.js 
 async function obtenerEstadoAPI() {
