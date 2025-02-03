@@ -507,7 +507,8 @@ textarea::placeholder {
 /* Estilos para mostrar el estado del servicio de la API de Open AI */
 
 	/* Estilo para el indicador de estado */
-  #estado-circulo {
+  
+  #circulo-info-estado-api {
     width: 20px;
     height: 20px;
     border-radius: 50%;

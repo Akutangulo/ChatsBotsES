@@ -265,9 +265,9 @@ async function obtenerEstadoAPI() {
     }
 }
 
-// Ejecutar en el DOM donde existe #estado-circulo
+// Ejecutar en el DOM donde existe #circulo-info-estado-api
 document.addEventListener('DOMContentLoaded', async () => {
-    if (!document.getElementById('estado-circulo')) return; // Si no existe, salir
+    if (!document.getElementById('circulo-info-estado-api')) return; // Si no existe, salir
 
     const estado = await obtenerEstadoAPI();
     
@@ -280,6 +280,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         error: ""
     };
 
-    const circulo = document.getElementById('estado-circulo');
+    const circulo = document.getElementById('circulo-info-estado-api');
     circulo.className = clases[estado];
 });
