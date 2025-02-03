@@ -140,7 +140,7 @@
 }
 
 .chatbot-content {
-    padding: 10px;
+   /* padding: 10px;*/
     overflow-y: auto;
     flex-grow: 1;
     font-size: 1.2rem;
@@ -300,6 +300,7 @@ textarea::placeholder {
 
 .top-header {
   background: #9300D3;
+  padding: 0;
 }
 
 .top-header,
