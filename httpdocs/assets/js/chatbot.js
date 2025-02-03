@@ -249,3 +249,37 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     });
 });
+
+/*********************************************************************
+ * Funcion para mostrar el estado del serviicio de la API de Open AI *
+ *********************************************************************/
+// Función IDÉNTICA a la del panel-de-control.js 
+async function obtenerEstadoAPI() {
+    try {
+        const respuesta = await fetch('https://status.openai.com/api/v2/summary.json');
+        const datos = await respuesta.json();
+        return datos.components.find(c => c.name === 'API')?.status || "unknown";
+    } catch (error) {
+        console.error('Error:', error);
+        return "error";
+    }
+}
+
+// Ejecutar en el DOM donde existe #estado-circulo
+document.addEventListener('DOMContentLoaded', async () => {
+    if (!document.getElementById('estado-circulo')) return; // Si no existe, salir
+
+    const estado = await obtenerEstadoAPI();
+    
+    const clases = {
+        operational: "verde",
+        degraded_performance: "amarillo",
+        partial_outage: "naranja",
+        major_outage: "rojo",
+        unknown: "",
+        error: ""
+    };
+
+    const circulo = document.getElementById('estado-circulo');
+    circulo.className = clases[estado];
+});
