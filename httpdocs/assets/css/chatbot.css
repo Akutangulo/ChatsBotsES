@@ -552,6 +552,7 @@ textarea::placeholder {
 #storage-toggle:checked {
     border-color: green;
     color: green;
+    /*-webkit-text-stroke: 1px white;*/
 }
 
 /* Símbolo del check (cuando está seleccionado) con efecto de aumento centrado */
