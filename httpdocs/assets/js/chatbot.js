@@ -197,9 +197,9 @@ document.addEventListener('DOMContentLoaded', function () {
 /**************************************************
  * Script para cambiar el tema de oscuro a claro  *
  **************************************************/
-function toggleTheme() {
-    document.body.classList.toggle('tema-claro');
-    const theme = document.body.classList.contains('tema-claro') ? 'light' : 'dark';
+function alternarTemaChatsBotsES() {
+    document.body.classList.toggle('tema-claro-chatsbotses');
+    const theme = document.body.classList.contains('tema-claro-chatsbotses') ? 'light' : 'dark';
     localStorage.setItem('theme', theme);
 }
 
@@ -207,7 +207,7 @@ function toggleTheme() {
 document.addEventListener('DOMContentLoaded', () => {
     const storedTheme = localStorage.getItem('theme');
     if (storedTheme === 'light') {
-        document.body.classList.add('tema-claro');
+        document.body.classList.add('tema-claro-chatsbotses');
     }
 });
 

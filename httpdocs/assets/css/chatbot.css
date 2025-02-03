@@ -20,7 +20,7 @@
 }
 
 /* Tema Claro */
-.tema-claro {
+.tema-claro-chatsbotses {
     --color-fondo: #fafbfd; /* Blanco */
     --color-fondo-chatbot: #fcfbfb; /* Gris claro */
     --color-texto: #191919; /* Negro */
@@ -487,10 +487,10 @@ textarea::placeholder {
   }
 
 
-/*
-.theme-toggle {
+
+.alternar-tema-chatbot {
     position: absolute;
-    /*top: 10px; para que aparezca en la parte superior del contenedor*//*
+    top: 10px; 
     right: 10px;
     cursor: pointer;
     font-size: 1rem;
@@ -499,7 +499,7 @@ textarea::placeholder {
     padding: 0.3rem;
     border-radius: 50%;
     transition: background-color 1.3s, color 1.3s;
-}*/
+}
 
 /**************************************************
 * Estilos para el panel de control de ChatsBotsES *
@@ -509,8 +509,8 @@ textarea::placeholder {
 	/* Estilo para el indicador de estado */
   
   #circulo-info-estado-api {
-    width: 20px;
-    height: 20px;
+    width: 13px;
+    height: 13px;
     border-radius: 50%;
     display: inline-block;
 	  position: absolute;
