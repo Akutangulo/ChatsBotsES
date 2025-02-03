@@ -197,19 +197,17 @@ document.addEventListener('DOMContentLoaded', function () {
 /**************************************************
  * Script para cambiar el tema de oscuro a claro  *
  **************************************************/
+/**************************************************
+ * Script para cambiar el tema del chatbot        *
+ **************************************************/
 function alternarTemaChatsBotsES() {
-    document.body.classList.toggle('tema-claro-chatsbotses');
-    const theme = document.body.classList.contains('tema-claro-chatsbotses') ? 'light' : 'dark';
-    localStorage.setItem('theme', theme);
-}
-
-// Aplicar tema almacenado al cargar la página
-document.addEventListener('DOMContentLoaded', () => {
-    const storedTheme = localStorage.getItem('theme');
-    if (storedTheme === 'light') {
-        document.body.classList.add('tema-claro-chatsbotses');
+    const chatbot = document.querySelector('.chatbot-container'); // Asegúrate de usar la clase correcta del chatbot
+    if (chatbot) {
+        chatbot.classList.toggle('tema-claro-chatsbotses');
+        const theme = chatbot.classList.contains('tema-claro-chatsbotses') ? 'light' : 'dark';
+        localStorage.setItem('chatbot-theme', theme);
     }
-});
+}
 
 /*************************************************
  * Script de las opciones del header del chatbot *

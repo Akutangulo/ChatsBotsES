@@ -384,7 +384,7 @@ textarea::placeholder {
   justify-content: space-between;
   background-color: red;
   margin: 1rem;
-  flex-direction: column
+  flex-direction: column;
 }
 
 .storage-container {
@@ -487,7 +487,7 @@ textarea::placeholder {
   }
 
 
-
+/* Estilos del boton para cambiar el tema de claro a oscuro en la interfaz del chatbot */
 .alternar-tema-chatbot {
     position: absolute;
     top: 10px; 
