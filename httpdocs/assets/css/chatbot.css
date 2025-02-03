@@ -31,7 +31,7 @@
 /***********************
  * Estilos del ChatBot *
  ***********************/
- /* Animación pulse */
+ /* Animación pulse para la burbuja y botones */
  .pulse {
     box-shadow: 0 0 0 0 rgb(0, 255, 255);
     cursor: pointer;
@@ -53,7 +53,7 @@
     }
 }
 
- /* Animación de rebote */
+ /* Animación de rebote de la burbuja */
  @keyframes rebote-bubble {
     0%, 20%, 50%, 80%, 100% {
         transform: translateY(0);
@@ -447,6 +447,9 @@ textarea::placeholder {
     margin-right: 20%;
 }
 
+/*******************************************
+ * Estilo para el preloader de ChatsBotsES *
+ *******************************************/
 /* Estilo para el spinner preloader */
 .chatbot-pensando { 
   color: #9300D3; 
@@ -497,3 +500,67 @@ textarea::placeholder {
     transition: background-color 1.3s, color 1.3s;
 }*/
 
+/**************************************************
+* Estilos para el panel de control de ChatsBotsES *
+***************************************************/
+/* Estilos para mostrar el estado del servicio de la API de Open AI */
+
+	/* Estilo para el indicador de estado */
+  #estado-circulo {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+	  position: absolute;
+	  padding: 0.3rem;
+}
+
+/* Colores para los estados */
+.verde { background-color: #4CAF50; }  /* Operativo */
+.amarillo { background-color: #FFC107; } /* Rendimiento degradado */
+.naranja { background-color: #FF9800; }  /* Interrupción parcial */
+.rojo { background-color: #F44336; }      /* Interrupción mayor */
+
+
+/* Ocultar el checkbox por defecto */
+#storage-toggle {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid red;
+    border-radius: 50%; /* Hace que el checkbox sea completamente redondo */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color: rgb(189, 62, 62);
+    cursor: pointer;
+    position: relative;
+}
+
+/* Símbolo de la cruz (cuando no está seleccionado) */
+#storage-toggle::before {
+    content: "✖";
+	font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Cuando el checkbox está marcado */
+#storage-toggle:checked {
+    border-color: green;
+    color: green;
+}
+
+/* Símbolo del check (cuando está seleccionado) con efecto de aumento centrado */
+#storage-toggle:checked::before {
+    content: "✔";
+    font-size: 1.3rem; /* Aumentamos solo el símbolo */
+    transform: scale(1.3); /* Un poco más grande para el efecto cómic */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0; /* Asegura que se centre verticalmente */
+}
