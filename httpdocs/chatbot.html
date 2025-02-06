@@ -11,52 +11,63 @@
     <script src="https://kit.fontawesome.com/64393aa48f.js" crossorigin="anonymous" async></script>
 </head>
 <body>
-
-<!-- Overlay para el efecto modal -->
+<!-- Overlay para el efecto modal -->  
 <div id="chatbot-overlay" class="chatbot-overlay"></div>
 
-<!-- Burbuja del Chatbot -->
-<div id="chatbot-bubble" class="chatbot-bubble pulse" title="Haz clic para abrir el Chatbot de ChatsBotsES">
-    <i class="fa fa-comments" aria-hidden="true" style="font-size: 2em; color: white;"></i>
+<!-- Burbuja del Chatbot -->  
+  <div id="chatbot-bubble" class="chatbot-bubble">
+    <i class="fa fa-comments" aria-hidden="true"></i>
   </div>
-  <!-- Ventana del Chatbot -->
+
+<!-- Ventana del Chatbot -->
   <div id="chatbot-container" class="chatbot-container chatbot-open">
+
+<!-- Mensajes del chatbot y usuario se agregarán aquí dinámicamente -->
+    <div id="chatbot-content" class="chatbot-content">
+
     <div class="chatbot-header">
       <div class="top-header"></div>
       <div class="opciones-chatbot-header"></div>
       <div class="inferior-header"></div>
     </div>
+
     <div class="text-container">
+
       <div class="contenido-top-header">
         <h3>Pregunta a la Inteligencia Artificial de ChatsBotsES</h3>
         <i class="fa-solid fa-gear gear-icon" title="Muestra las opciones del Chatbot de Akutangulo"></i>
         <button id="close-chat" class="close-chat" title="Cierra el Chatbot de Akutangulo">X</button>
       </div>
+
       <div class="contenido-opciones-chatbot-header">
         <div class="opciones-chatbot">
-          <span class="theme-toggle" onclick="toggleTheme()">🌓</span>
+          <span class="alternar-tema-chatbot" onclick="alternarTemaChatsBotsES()">🌓</span>
           <div class="storage-container" id="storage-container">
-            <label id="storage-toggle-label" <!--style="display: none;"--> </label>
+            <label id="storage-toggle-label">
               <input type="checkbox" id="storage-toggle"> Recordar la conversación
             </label>
           </div>
+
+          <div>
+              <span id="circulo-info-estado-api"></span> Estado ChatsBotsES API
+          </div>
+
+          <div>
+            <label>
+              <input type="checkbox"> Otro checkbox
+            </label>
+          </div>
+
         </div>
       </div>
+
       <div class="contenido-inferior-header">
         <span>Notification3</span>
       </div>
+
     </div>
-    
-    <div id="chatbot-content" class="chatbot-content">
-      <!-- Mensajes del chatbot y usuario se agregarán aquí dinámicamente -->
-    </div>
-    <div class="chatbot-input-area">
-      <textarea id="chatbot-input" placeholder="Escribe tu consulta..."></textarea>
-      <button id="send-btn">Enviar</button>
-    </div>
-  </div>
-  
-  <svg id="filter">
+
+    <svg id="filter">
       <defs>
         <filter id="goo">
           <feGaussianBlur result="blurred" in="SourceGraphic" stdDeviation="9"></feGaussianBlur>
@@ -71,34 +82,14 @@
       </defs>
     </svg>
 
-<script>
-document.addEventListener('DOMContentLoaded', async () => {
-    try {
-        const response = await fetch('chatbot_proxy.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ action: 'load_config' }) // Solicita la configuración
-        });
-
-        const data = await response.json();
-        document.getElementById('storage-toggle').checked = data.config.remember_conversation; // Establecer el estado del checkbox
-        
-        // Mostrar/ocultar el checkbox según la configuración
-        const storageToggleLabel = document.getElementById('storage-toggle-label');
-
-        if (data.config.show_storage_toggle) {
-            storageToggleLabel.style.display = 'block'; // Mostrar el checkbox
-        } else {
-            storageToggleLabel.style.display = 'none'; // Ocultar el checkbox
-        }
-
-    } catch (error) {
-        console.error('Error cargando la configuración:', error);
-    }
-});
-</script>
+      <!-- Mensajes del chatbot y usuario se agregarán aquí dinámicamente -->
+    </div>
+    
+    <div class="chatbot-input-area">
+      <textarea id="chatbot-input" placeholder="Escribe tu consulta..."></textarea>
+      <button id="send-btn">Enviar</button>
+    </div>
+  </div>
 
 <script src="./assets/js/chatbot.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
