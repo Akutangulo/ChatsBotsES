@@ -276,36 +276,6 @@
     </div>
   </div>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-        try {
-            const response = await fetch('chatbot_proxy.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ action: 'load_config' }) // Solicita la configuración
-            });
-
-            const data = await response.json();
-            document.getElementById('storage-toggle').checked = data.config.remember_conversation; // Establecer el estado del checkbox
-            
-            // Mostrar/ocultar el checkbox según la configuración
-            const storageToggleLabel = document.getElementById('storage-toggle-label');
-
-            if (data.config.show_storage_toggle) {
-                storageToggleLabel.style.display = 'block'; // Mostrar el checkbox
-            } else {
-                storageToggleLabel.style.display = 'none'; // Ocultar el checkbox
-            }
-
-        } catch (error) {
-            console.error('Error cargando la configuración:', error);
-        }
-    });
-    </script>
-    
-
 <script>document.querySelectorAll(".copyright-year").forEach(function(element) {element.textContent = new Date().getFullYear();});</script>
 
 

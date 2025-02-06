@@ -26,11 +26,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Llamar a la función para cargar la configuración
-    loadConfiguration();
-
+// Llamar a la función para cargar la configuración
+loadConfiguration().then(() => {
     // Determinar el tipo de almacenamiento al cargar
-    let conversationId;
     if (storageToggle.checked) {
         conversationId = localStorage.getItem('conversationId') || generateConversationId();
         localStorage.setItem('conversationId', conversationId);
@@ -38,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
         conversationId = sessionStorage.getItem('conversationId') || generateConversationId();
         sessionStorage.setItem('conversationId', conversationId);
     }
+});
 
     // Función para generar conversationId
     function generateConversationId() {
@@ -111,60 +110,71 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    function sendMessage() {
-        const userMessage = chatbotInput.value.trim();
-        if (userMessage === '') return;
-    
-        // Mostrar mensaje del usuario
-        displayMessage('user', userMessage);
-        chatbotInput.value = '';
-        chatbotInput.style.height = 'auto';
-    
-        // Mostrar animación chatbot-pensando mientras se espera la respuesta
-        const chatbotPensando = document.createElement('div');
-        chatbotPensando.className = 'chatbot-pensando';
-    
-        // Crear las neuronas (barras animadas)
-        for (let i = 1; i <= 10; i++) {
-            const neurona = document.createElement('span');
-            neurona.className = `neurona neurona-${i}`;
-            chatbotPensando.appendChild(neurona);
-        }
-    
-        // Añadir el texto "ChatBot Pensando"
-        const textoPensando = document.createElement('div');
-        textoPensando.textContent = 'ChatBot Pensando';
-        chatbotPensando.appendChild(textoPensando);
-    
-        // Añadir el contenedor de la animación al contenido del chatbot
-        chatbotContent.appendChild(chatbotPensando);
-        chatbotContent.scrollTop = chatbotContent.scrollHeight;
-    
-        // Enviar mensaje al servidor con conversationId y remember_conversation
-        fetch('../../chatbot_proxy.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                message: userMessage,
-                conversationId: conversationId,
-                remember_conversation: storageToggle.checked // Enviar estado del checkbox
-            }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Remover animación chatbot-pensando
-            chatbotPensando.remove();
-            // Mostrar respuesta del chatbot lentamente
-            typeWriterEffect('bot', data.response);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            chatbotPensando.remove();
-            displayMessage('bot', 'Hubo un error, por favor intentalo de nuevo.');
-        });
+function sendMessage() {
+    const userMessage = chatbotInput.value.trim();
+    if (userMessage === '') return; // No enviar mensaje vacío
+
+    // Mostrar mensaje del usuario
+    displayMessage('user', userMessage);
+    chatbotInput.value = ''; // Limpiar input
+    chatbotInput.style.height = 'auto'; // Reiniciar altura del textarea
+
+    // Mostrar animación chatbot-pensando mientras se espera la respuesta
+    const chatbotPensando = document.createElement('div');
+    chatbotPensando.className = 'chatbot-pensando';
+
+    // Crear las neuronas (barras animadas)
+    for (let i = 1; i <= 10; i++) {
+        const neurona = document.createElement('span');
+        neurona.className = `neurona neurona-${i}`;
+        chatbotPensando.appendChild(neurona);
     }
+
+    // Añadir el texto "ChatBot Pensando"
+    const textoPensando = document.createElement('div');
+    textoPensando.textContent = 'ChatBot Pensando';
+    chatbotPensando.appendChild(textoPensando);
+
+    // Añadir el contenedor de la animación al contenido del chatbot
+    chatbotContent.appendChild(chatbotPensando);
+    chatbotContent.scrollTop = chatbotContent.scrollHeight; // Desplazarse al final
+
+    // Enviar mensaje al servidor con conversationId
+    fetch('../../chatbot_proxy.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            message: userMessage,
+            conversationId: conversationId,
+            remember_conversation: storageToggle.checked // Enviar estado del checkbox
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Remover animación chatbot-pensando
+        chatbotPensando.remove();
+
+        // Establecer el nuevo conversationId en caso de que sea diferente
+        if (data.conversationId) {
+            conversationId = data.conversationId; // Actualizar conversationId
+            if (storageToggle.checked) {
+                localStorage.setItem('conversationId', conversationId); // Almacenar en localStorage
+            } else {
+                sessionStorage.setItem('conversationId', conversationId); // Almacenar en sessionStorage
+            }
+        }
+
+        // Mostrar respuesta del chatbot lentamente
+        typeWriterEffect('bot', data.response);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        chatbotPensando.remove(); // Remover animación si hay error
+        displayMessage('bot', 'Hubo un error, por favor intentalo de nuevo.'); // Mensaje de error
+    });
+}
 
     function displayMessage(sender, message) {
         const messageElement = document.createElement('div');
@@ -246,6 +256,34 @@ document.addEventListener('DOMContentLoaded', async () => {
             element.classList.toggle('inactive');
         });
     });
+});
+
+// almacenar y recordar la preferencia del usuario para recordar la conversación
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const response = await fetch('chatbot_proxy.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ action: 'load_config' }) // Solicita la configuración
+        });
+
+        const data = await response.json();
+        document.getElementById('storage-toggle').checked = data.config.remember_conversation; // Establecer el estado del checkbox
+        
+        // Mostrar/ocultar el checkbox según la configuración
+        const storageToggleLabel = document.getElementById('storage-toggle-label');
+
+        if (data.config.show_storage_toggle) {
+            storageToggleLabel.style.display = 'block'; // Mostrar el checkbox
+        } else {
+            storageToggleLabel.style.display = 'none'; // Ocultar el checkbox
+        }
+
+    } catch (error) {
+        console.error('Error cargando la configuración:', error);
+    }
 });
 
 /*********************************************************************
