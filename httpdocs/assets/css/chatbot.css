@@ -129,18 +129,17 @@
 
 @media (min-width: 769px) {
     .chatbot-container {
-        width: 50%;
+        width: 70%;
         height: 90%;
         top: 5%;
-        left: 25%;
-        right: 25%;
+        left: 15%;
+        right: 15%;
         bottom: 5%;
         z-index: 9999;
     }
 }
 
 .chatbot-content {
-   /* padding: 10px;*/
     overflow-y: auto;
     flex-grow: 1;
     font-size: 1.2rem;
@@ -333,8 +332,7 @@ textarea::placeholder {
   color: white;
   background-color: transparent;
   border: none;
-  padding: 0;
-  margin: 0;
+  padding: 0 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -352,8 +350,8 @@ textarea::placeholder {
   cursor: pointer;
   font-size: 1.5em;
   color: white;
-  margin-left: 10px;
   transition: transform 0.5s ease;
+  padding: 0 5px;
 }
 
 .fa-solid.fa-gear:hover {
