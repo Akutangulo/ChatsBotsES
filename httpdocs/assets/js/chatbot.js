@@ -204,14 +204,13 @@ function sendMessage() {
     }
 });
 
-/**************************************************
- * Script para cambiar el tema de oscuro a claro  *
- **************************************************/
-/**************************************************
- * Script para cambiar el tema del chatbot        *
- **************************************************/
+
+/*******************************************
+ * Script para cambiar el tema del chatbot *
+ *******************************************/
 function alternarTemaChatsBotsES() {
-    const chatbot = document.querySelector('.chatbot-container'); // Asegúrate de usar la clase correcta del chatbot
+    const chatbot = document.querySelector('.chatbot-container'); 
+    
     if (chatbot) {
         chatbot.classList.toggle('tema-claro-chatsbotses');
         const theme = chatbot.classList.contains('tema-claro-chatsbotses') ? 'light' : 'dark';
