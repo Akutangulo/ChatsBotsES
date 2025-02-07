@@ -24,7 +24,6 @@
         --color-fondo-secundario: #1E1E1E; /* Gris oscuro */
         --color-texto: #f8f8f8; /* Texto claro por defecto */
         --color-texto-secundario: #CCCCCC; /* Gris claro */   
-        --color-fondo-transparente: rgba(255, 255, 255, 0.8); /* Color de fondo semi-transparente */
     }
     
     /* Tema Claro */
@@ -33,7 +32,6 @@
         --color-fondo-secundario: #CCCCCC; /* Gris claro */
         --color-texto: #191919; /* Negro */
         --color-texto-secundario: #3f3f3f; /* Gris oscuro */
-        --color-fondo-transparente: rgba(30, 30, 30, 0.8); /* Color de fondo semi-transparente */
     }
     
     body {
