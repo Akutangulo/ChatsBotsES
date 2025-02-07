@@ -14,29 +14,38 @@
 :root {
     --color-akutangulo: #9300D3; /* Color primario */
     --color-secundario: #0ff; /* Color secundario */
-    --color-fondo: #121212; /* Fondo oscuro por defecto */
 
-    --color-fondo-chatbot: #CCCCCC; 
-    --color-texto-chatbot: #CCCCCC;
-    --color-mensaje-usuario: #CCCCCC;
-    --color-mensaje-chatbot: #CCCCCC;
-    --color-bordes-chatbot: #CCCCCC; 
-    --color-boton-chatbot: #CCCCCC; 
-    --color-texto-boton-chatbot: #CCCCCC;
-    --color-burbuja-chatbot: #CCCCCC;
+    --color-fondo-chatbot: #1A1A1A;
+    --color-texto-chatbot: #E4E6EB;
+    --color-texto-usuario: #E4E6EB;
+    --color-mensaje-usuario: #2D3436;
+    --color-mensaje-chatbot: #1A2942;
 
-    --color-texto: #f8f8f8; /* Texto claro por defecto */
-    --color-texto-secundario: #CCCCCC; /* Gris claro */   
-    --color-fondo-transparente: rgba(255, 255, 255, 0.8); /* Color de fondo semi-transparente */
+
+    /*--color-mensaje-usuario: #f6d5f9;
+    --color-mensaje-chatbot: #fff9c4;*/
+    
+    --color-bordes-chatbot: #0ff ;
+    --color-boton-chatbot: #0ff;
+    --color-texto-boton-chatbot: #1A1A1A;
+
+    --color-fondo-transparente-chatbot: rgba(30, 30, 30, 0.8); /* Color de fondo semi-transparente */
 }
 
 /* Tema Claro */
 .tema-claro-chatsbotses {
-    --color-fondo: #fafbfd; /* Blanco */
-    --color-fondo-chatbot: #fcfbfb; /* Gris claro */
-    --color-texto: #191919; /* Negro */
-    --color-texto-secundario: #3f3f3f; /* Gris oscuro */
-    --color-fondo-transparente: rgba(30, 30, 30, 0.8); /* Color de fondo semi-transparente */
+    --color-fondo-chatbot: #FAFAFA ; /* Gris claro */
+    --color-texto-chatbot: #2D3748;
+    --color-texto-usuario: #2D3748;
+    --color-mensaje-usuario: #b9e8f4;
+    --color-mensaje-chatbot: #b8f5b8;
+
+    --color-bordes-chatbot: #9300D3 ;
+    --color-boton-chatbot: #9300D3;
+    --color-texto-boton-chatbot: #FAFAFA;
+    
+    --color-fondo-transparente-chatbot: rgba(255, 255, 255, 0.8); /* Color de fondo semi-transparente */
+    
 }
 
 /***********************
@@ -115,7 +124,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--color-fondo-transparente-chatbot);
   backdrop-filter: blur(5px);
   z-index: 999; /* Asegúrate de que esté por encima de todo */
   display: none;
@@ -177,13 +186,13 @@
 .chatbot-input-area {
     display: flex;
     padding: 10px;
-    border-top: 1px solid var(--color-akutangulo);
+    border-top: 1px solid var(--color-bordes-chatbot);
 }
 
 .chatbot-input-area textarea {
     width: calc(100% - 60px);
     padding: 12px;
-    border: 1px solid var(--color-akutangulo);
+    border: 1px solid var(--color-bordes-chatbot);
     border-radius: 4px;
     box-sizing: border-box;
     resize: none; /* Desactivar el redimensionamiento manual */
@@ -191,25 +200,24 @@
     height: auto; /* Permitir que el script maneje la altura */
     overflow: hidden; /* Ocultar el desplazamiento */
     min-height: 50px; /* Altura mínima del textarea */
-    color: black;  
+    color: var(--color-texto-chatbot);  
     background-color: var(--color-fondo-chatbot);
 }
 textarea::placeholder {
-    color: black; 
     opacity: 1; 
     font-family: "Afacad Flux", sans-serif;
   }
   
 
 .chatbot-input-area textarea:focus {
-    border: 2px solid var(--color-akutangulo);
+    border: 2px solid var(--color-bordes-chatbot);
     outline: none; 
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
 }
 
 .chatbot-input-area button {
-    background-color: var(--color-akutangulo);
-    color: white;
+    background-color: var(--color-boton-chatbot);
+    color: var(--color-texto-boton-chatbot);
     border: none;
     padding: 0.5rem 1rem;
     margin-left: 10px;
@@ -273,7 +281,7 @@ textarea::placeholder {
   height: clamp(40px, 8vh, 60px);
   position: relative;
   z-index: 1;
-  animation: slide-reverse 2s ease-in-out 1; /* Animación por defecto: slide-reverse */
+  animation: slide-reverse 2s ease-in-out 1; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -295,7 +303,7 @@ textarea::placeholder {
 }
 
 .opciones-chatbot-header,
-.contenido-opciones-chatbot-header{
+.contenido-opciones-chatbot-header {
   width: 100%;
   height: clamp(80px, 15vh, 120px);
   position: relative;
@@ -420,7 +428,7 @@ textarea::placeholder {
 /* Símbolo de la cruz (cuando no está seleccionado) */
 #storage-toggle::before {
   content: "✖";
-font-size: 0.8rem;
+  font-size: 0.8rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -429,7 +437,7 @@ font-size: 0.8rem;
 /* Cuando el checkbox está marcado */
 #storage-toggle:checked {
   border-color: green;
-  color: green;
+  color: rgb(22, 218, 22);
   /*-webkit-text-stroke: 1px white;*/
 }
 
@@ -490,15 +498,17 @@ font-size: 0.8rem;
 }
 
 .message.user {
-    background-color: #f6d5f9;
+    background-color: var(--color-mensaje-usuario);
     align-self: flex-end;
     margin-left: 20%;
+    color: var(--color-texto-usuario);
 }
 
 .message.bot {
-    background-color: #fff9c4;
+  background-color: var(--color-mensaje-chatbot);
     align-self: flex-start;
     margin-right: 20%;
+    color: var(--color-texto-chatbot);
 }
 
 /*******************************************
@@ -547,8 +557,8 @@ font-size: 0.8rem;
     right: 10px;
     cursor: pointer;
     font-size: 1rem;
-    background-color: var(--color-fondo-transparente);
-    color: var(--color-texto);
+    background-color: var(--color-fondo-transparente-chatbot);
+    color: var(--color-texto-usuario);
     padding: 0.3rem;
     border-radius: 50%;
     transition: background-color 1.3s, color 1.3s;
