@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control - Conversaciones</title>
+    <link rel="stylesheet" href="panel-de-control.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        .panel-control-gestion-json {
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            background: #fff;
+            border-radius: 8px;
+        }
+
+        h1 {
+            color: #007BFF;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #333;
+        }
+
+		.titulo-conversacion {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        .titulo-y-metadata {
+            flex-grow: 1;
+            margin-right: 15px;
+        }
+
+        .metadata-conversacion {
+            margin-top: 8px;
+            font-size: 0.9rem;
+            display: flex;
+            gap: 15px;
+            color: #666;
+        }
+
+        .fecha::before {
+            content: "🗓️ ";
+        }
+
+        .costo::before {
+            content: "💶 ";
+        }
+
+        .conversaciones {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            list-style-type: none; /* Añadido para quitar los puntos de la lista */
+        }
+
+        .conversacion {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .titulo-conversacion {
+            font-size:1.2rem;
+            background-color: #ddd;
+            border: 1px solid #fff;
+            margin: 1rem;
+            padding: 1rem;
+            border-radius: 4px;
+        }
+
+        .alerta-email {
+            background-color: #ffcb3b;
+            border: 2px solid #ffc107;
+        }
+
+        .alerta-phone {
+            background-color: #8bc34a; /* Color de fondo verde claro para los teléfonos */
+            border: 2px solid #4caf50; /* Borde más oscuro para el contraste */
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            max-height: 200px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .chat-message {
+            margin-bottom: 10px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .chat-message.user {
+            align-self: flex-end;
+            background-color: #007BFF;
+            color: white;
+        }
+
+        .chat-message.assistant {
+            align-self: flex-start;
+            background-color: #e9ecef;
+            color: black;
+        }
+
+        .cerrar-sesion {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .cerrar-sesion:hover {
+            background-color: darkred;
+        }
+
+		.status-message { /* Clase para el mensaje de estado */
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #28a745;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+            z-index: 1000;
+            max-width: 90%;
+            text-align: center;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translate(-50%, -20px); opacity: 0; }
+            to { transform: translate(-50%, 0); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .metadata-conversacion {
+                flex-direction: column;
+                gap: 3px;
+            }
+        }
+    </style>
+</head>
+<body>
+<main class="panel-control-gestion-json">
+    <h1>Panel de Control de Conversaciones</h1>
+    <h2>Listado de Conversaciones</h2>
+
+    <div class="controles-superiores">
+        <button onclick="window.location.href='index.php'" class="link-button">Volver al Panel Principal</button>
+
+        <div class="filtros-container">
+            <div class="filtro-item">
+                <input type="checkbox" id="mail-en-conversacion" checked>
+                <label for="mail-en-conversacion">Conversaciones con emails</label>
+            </div>
+
+            <div class="filtro-item">
+                <input type="checkbox" id="phone-en-conversacion" checked>
+                <label for="phone-en-conversacion">Conversaciones con teléfonos</label>
+            </div>
+        </div>
+    </div>
+
+    <ul class="conversaciones">
+        <?php foreach ($conversaciones as $filename => $history): ?>
+            <?php
+            $containsEmail = false;
+            $containsPhone = false;
+            $metadata = null;
+
+            foreach(array_reverse($history) as $item) {
+                if(isset($item['type']) && $item['type'] === 'metadata') {
+                    $metadata = $item['data'];
+                    break;
+                }
+            }
+
+            $emailPattern = '/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/';
+            $phonePattern = '/\b(6|7|8|9)\d{2}[- ]?(\d{2}[- ]?){2}\d{2}\b/';
+
+            foreach ($history as $message) {
+                if ($message['role'] !== 'system' && isset($message['content'])) {
+                    if (preg_match($emailPattern, $message['content'])) {
+                        $containsEmail = true;
+                    }
+                    if (preg_match($phonePattern, $message['content'])) {
+                        $containsPhone = true;
+                    }
+                    if ($containsEmail && $containsPhone) break;
+                }
+            }
+            ?>
+            <li class="conversacion <?php echo $containsEmail ? 'alerta-email' : ''; ?> <?php echo $containsPhone ? 'alerta-phone' : ''; ?>"
+                 data-contains-email="<?php echo $containsEmail ? 'true' : 'false'; ?>"
+                 data-contains-phone="<?php echo $containsPhone ? 'true' : 'false'; ?>">
+
+                <div class="titulo-conversacion">
+                    <div class="titulo-y-metadata">
+                        <strong><?php echo htmlspecialchars($filename); ?></strong>
+                        <?php if($metadata): ?>
+                        <div class="metadata-conversacion">
+                            <span class="fecha"><?php echo date('d/m/Y H:i', strtotime($metadata['timestamp'])); ?></span>
+                            <span class="costo"><?php echo number_format($metadata['cost'], 4, ',', '.'); ?> €</span>
+                        </div>
+                        <?php endif; ?>
+                    </div>
+                    <button type="button" onclick="confirmDelete('<?php echo htmlspecialchars($filename); ?>')">Eliminar</button>
+                </div>
+
+                <div class="chat-container">
+                    <?php foreach ($history as $message): ?>
+                        <?php if ($message['role'] !== 'system' && !isset($message['type'])): ?>
+                            <div class="chat-message <?php echo $message['role']; ?>">
+                                <strong><?php echo ($message['role'] === 'user') ? 'Tú' : 'AkuBot'; ?>:</strong>
+                                <span><?php echo htmlspecialchars($message['content']); ?></span>
+                            </div>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+    <button onclick="window.location.href='logout.php'" class="cerrar-sesion">Cerrar sesión</button>
+</main>
+
+<?php if ($mensaje_estado): ?>
+    <div role="status" aria-live="polite" class="status-message">
+        <?php echo $mensaje_estado; ?>
+    </div>
+<?php endif; ?>
+
+
+<script>
+    // Script ORIGINAL FUNCIONAL de los checkboxes
+    document.getElementById('mail-en-conversacion').addEventListener('change', function() {
+        const conversaciones = document.querySelectorAll('.conversacion');
+        const showEmailConversations = this.checked;
+
+        conversaciones.forEach(conversacion => {
+            const hasEmail = conversacion.getAttribute('data-contains-email') === 'true';
+            if (hasEmail) {
+                conversacion.style.backgroundColor = showEmailConversations ? '#ffcb3b' : '#f9f9f9';
+                conversacion.style.border = showEmailConversations ? '2px solid #ffc107' : '1px solid #ddd';
+            }
+        });
+    });
+
+    document.getElementById('phone-en-conversacion').addEventListener('change', function() {
+        const conversaciones = document.querySelectorAll('.conversacion');
+        const showPhoneConversations = this.checked;
+
+        conversaciones.forEach(conversacion => {
+            const hasPhone = conversacion.getAttribute('data-contains-phone') === 'true';
+            if (hasPhone) {
+                conversacion.style.backgroundColor = showPhoneConversations ? '#8bc34a' : '#f9f9f9';
+                conversacion.style.border = showPhoneConversations ? '2px solid #4caf50' : '1px solid #ddd';
+            }
+        });
+    });
+
+    function confirmDelete(filename) {
+        if (confirm("¿Está seguro de eliminar este archivo?")) {
+            const form = document.createElement('form');
+            form.method = 'POST';
+
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'delete_file';
+            input.value = filename;
+
+            form.appendChild(input);
+            document.body.appendChild(form);
+            form.submit();
+        }
+    }
+</script>
+</body>
+</html>
