@@ -1,0 +1,63 @@
+{
+    "modelos": [
+        {
+            "proveedor": "Google",
+            "modelos": [
+                {
+                    "gemini-flash-1.5-8b": {
+                        "input_cost": 0.0375,
+                        "output_cost": 0.150, 
+                        "context_tokens": 1000000,
+                        "descripcion": "Gemini Flash 1.5 8B está optimizado para ofrecer velocidad y eficacia, y ofrece un mayor rendimiento en pequeñas tareas puntuales como el chat, la transcripción y la traducción. Con una latencia reducida, es muy eficaz para operaciones en tiempo real y a gran escala. Este modelo se centra en soluciones rentables al tiempo que mantiene unos resultados de alta calidad.",
+                        "url": "https://openrouter.ai/google/gemini-flash-1.5-8b/api"
+                    }
+                },
+                 {
+                    "gemini-2.0-flash-lite-preview-02-05:free": {
+                        "input_cost": 0.000,
+                        "output_cost": 0.000,
+                        "descripcion": "Gemini Flash Lite 2.0 ofrece un tiempo significativamente más rápido para el primer token (TTFT) en comparación con Gemini Flash 1.5, manteniendo la calidad a la par con los modelos más grandes como Gemini Pro 1.5. Dado que actualmente se encuentra en fase de previsualización, Google limitará en gran medida sus tarifas. Este modelo pasará de ser gratuito a ser de pago a la espera de un lanzamiento general el 24 de febrero, a 0,075 $ / 0,30 $ por millón de tokens de entrada / salida respectivamente.",
+                        "url": "https://openrouter.ai/google/gemini-2.0-flash-lite-preview-02-05:free/api"
+                    }
+                 }
+            ]
+        },
+        {
+            "proveedor": "Deepseek",
+            "modelos": [
+                {
+                    "deepseek-chat:free": {
+                         "input_cost": 0.000,
+                         "output_cost": 0.000, 
+                         "context_tokens": 128000,
+                        "descripcion": "DeepSeek-V3 es el último modelo del equipo DeepSeek, basado en el seguimiento de instrucciones y la capacidad de codificación de las versiones anteriores. Preentrenado con casi 15 billones de tokens, las evaluaciones realizadas revelan que el modelo supera a otros modelos de código abierto y rivaliza con los principales modelos de código cerrado.",
+                        "url": "https://openrouter.ai/deepseek/deepseek-chat:free/api"
+                    }
+                },
+                {
+                    "deepseek-chat": {
+                         "input_cost": 0.490,
+                         "output_cost": 0.890, 
+                         "context_tokens": 32768,
+                        "descripcion": "DeepSeek-V3 es el último modelo del equipo DeepSeek, basado en el seguimiento de instrucciones y la capacidad de codificación de las versiones anteriores. Preentrenado con casi 15 billones de tokens, las evaluaciones realizadas revelan que el modelo supera a otros modelos de código abierto y rivaliza con los principales modelos de código cerrado.",
+                        "url": "https://openrouter.ai/deepseek/deepseek-chat/api"
+                    }
+                }
+            ]
+        },
+        {
+            "proveedor": "OpenAI",
+            "modelos": [
+                {
+                   "gpt-4o-mini": {
+                        "input_cost": 0.150,
+                        "output_cost": 0.600, 
+                        "context_tokens": 128000,
+                        "descripcion": "GPT-4o mini es el modelo más reciente de OpenAI después de GPT-4 Omni, y admite entradas de texto e imágenes con salidas de texto. Como su modelo pequeño más avanzado, es muchas veces más asequible que otros modelos fronterizos recientes, y más de un 60% más barato que GPT-3.5 Turbo. Mantiene la inteligencia SOTA, a la vez que es significativamente más rentable. GPT-4o mini alcanza una puntuación del 82% en MMLU y actualmente se sitúa por encima de GPT-4 en las tablas de clasificación comunes de las preferencias de chat.",
+                        "url": "https://openrouter.ai/openai/gpt-4o-mini/api"
+                    }
+                }
+            ]
+        }
+    ]
+}
