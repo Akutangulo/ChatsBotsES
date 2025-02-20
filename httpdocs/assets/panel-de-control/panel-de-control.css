@@ -1,0 +1,85 @@
+/**************************************************
+* Estilos para el panel de control de ChatsBotsES *
+***************************************************/
+/* Estilos para mostrar el estado del servicio de la API de Open AI */
+  /* Estilo para el indicador de estado */
+
+#estado-api {
+    padding: 1rem;
+    text-align: center;
+    justify-content: center;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 1rem;
+}
+
+/* Colores para los estados */
+.verde { background-color: #4CAF50; }  /* Operativo */
+.amarillo { background-color: #FFC107; } /* Rendimiento degradado */
+.naranja { background-color: #FF9800; }  /* Interrupción parcial */
+.rojo { background-color: #F44336; }      /* Interrupción mayor */
+
+/* Estilos para el panel de control inicial index.php */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  padding: 20px;
+  color: black;
+  margin: 0;
+}
+.panel-control {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+.card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+h1 {
+  text-align: center;
+  color: #007BFF;
+}
+.statistic {
+  margin: 10px;
+  font-weight: bold;
+}
+.link-button {
+  display: block;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  width: 85%;
+}
+.link-button:hover {
+  background-color: #0056b3;
+}
+
+/* boton para cerrar la sesion en cualquier pagina del panel de control */
+.cerrar-sesion {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.cerrar-sesion:hover {
+  background-color: darkred;
+}
+
+
