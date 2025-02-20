@@ -204,13 +204,14 @@ function sendMessage() {
     }
 });
 
-
-/*******************************************
- * Script para cambiar el tema del chatbot *
- *******************************************/
+/**************************************************
+ * Script para cambiar el tema de oscuro a claro  *
+ **************************************************/
+/**************************************************
+ * Script para cambiar el tema del chatbot        *
+ **************************************************/
 function alternarTemaChatsBotsES() {
-    const chatbot = document.querySelector('.chatbot-container'); 
-    
+    const chatbot = document.querySelector('.chatbot-container'); // Asegúrate de usar la clase correcta del chatbot
     if (chatbot) {
         chatbot.classList.toggle('tema-claro-chatsbotses');
         const theme = chatbot.classList.contains('tema-claro-chatsbotses') ? 'light' : 'dark';
@@ -255,34 +256,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             element.classList.toggle('inactive');
         });
     });
-});
-
-// almacenar y recordar la preferencia del usuario para recordar la conversación
-document.addEventListener('DOMContentLoaded', async () => {
-    try {
-        const response = await fetch('chatbot_proxy.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ action: 'load_config' }) // Solicita la configuración
-        });
-
-        const data = await response.json();
-        document.getElementById('storage-toggle').checked = data.config.remember_conversation; // Establecer el estado del checkbox
-        
-        // Mostrar/ocultar el checkbox según la configuración
-        const storageToggleLabel = document.getElementById('storage-toggle-label');
-
-        if (data.config.show_storage_toggle) {
-            storageToggleLabel.style.display = 'block'; // Mostrar el checkbox
-        } else {
-            storageToggleLabel.style.display = 'none'; // Ocultar el checkbox
-        }
-
-    } catch (error) {
-        console.error('Error cargando la configuración:', error);
-    }
 });
 
 /*********************************************************************
