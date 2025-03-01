@@ -206,72 +206,40 @@
     </div>
 
     <ul class="conversaciones">
-        <?php foreach ($conversaciones as $filename => $history): ?>
-            <?php
-            $containsEmail = false;
-            $containsPhone = false;
-            $metadata = null;
-
-            foreach(array_reverse($history) as $item) {
-                if(isset($item['type']) && $item['type'] === 'metadata') {
-                    $metadata = $item['data'];
-                    break;
-                }
-            }
-
-            $emailPattern = '/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/';
-            $phonePattern = '/\b(6|7|8|9)\d{2}[- ]?(\d{2}[- ]?){2}\d{2}\b/';
-
-            foreach ($history as $message) {
-                if ($message['role'] !== 'system' && isset($message['content'])) {
-                    if (preg_match($emailPattern, $message['content'])) {
-                        $containsEmail = true;
-                    }
-                    if (preg_match($phonePattern, $message['content'])) {
-                        $containsPhone = true;
-                    }
-                    if ($containsEmail && $containsPhone) break;
-                }
-            }
-            ?>
-            <li class="conversacion <?php echo $containsEmail ? 'alerta-email' : ''; ?> <?php echo $containsPhone ? 'alerta-phone' : ''; ?>"
-                 data-contains-email="<?php echo $containsEmail ? 'true' : 'false'; ?>"
-                 data-contains-phone="<?php echo $containsPhone ? 'true' : 'false'; ?>">
+        
+            <li class="conversacion">
 
                 <div class="titulo-conversacion">
+
                     <div class="titulo-y-metadata">
-                        <strong><?php echo htmlspecialchars($filename); ?></strong>
-                        <?php if($metadata): ?>
+                        <strong>conv_10ha7ysia.json</strong>
                         <div class="metadata-conversacion">
-                            <span class="fecha"><?php echo date('d/m/Y H:i', strtotime($metadata['timestamp'])); ?></span>
-                            <span class="costo"><?php echo number_format($metadata['cost'], 4, ',', '.'); ?> €</span>
+                            <span class="fecha">30/01/2025 03:25</span>
+                            <span class="costo">0,0067 €</span>
                         </div>
-                        <?php endif; ?>
                     </div>
+
                     <button type="button" onclick="confirmDelete('<?php echo htmlspecialchars($filename); ?>')">Eliminar</button>
+                    
                 </div>
 
-                <div class="chat-container">
-                    <?php foreach ($history as $message): ?>
-                        <?php if ($message['role'] !== 'system' && !isset($message['type'])): ?>
-                            <div class="chat-message <?php echo $message['role']; ?>">
-                                <strong><?php echo ($message['role'] === 'user') ? 'Tú' : 'AkuBot'; ?>:</strong>
-                                <span><?php echo htmlspecialchars($message['content']); ?></span>
-                            </div>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
+    <div class="chat-container">
+                <div class="chat-message user">
+                    <strong>Tú:</strong>
+                    <span>Hola</span>
+                </div>
+                <div class="chat-message assistant">
+                    <strong>AkuBot:</strong>
+                    <span>¡Hola! Soy akuBot, el asistente virtual de ChatsBotsES. ¿En qué puedo ayudarte hoy?</span>
                 </div>
             </li>
-        <?php endforeach; ?>
     </ul>
-    <button onclick="window.location.href='logout.php'" class="cerrar-sesion">Cerrar sesión</button>
+    <button onclick="window.location.href='logout.html'" class="cerrar-sesion">Cerrar sesión</button>
 </main>
 
-<?php if ($mensaje_estado): ?>
     <div role="status" aria-live="polite" class="status-message">
-        <?php echo $mensaje_estado; ?>
+
     </div>
-<?php endif; ?>
 
 
 <script>
