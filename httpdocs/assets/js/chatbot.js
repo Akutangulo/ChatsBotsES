@@ -266,16 +266,16 @@ async function obtenerEstadoAPI() {
     try {
         const respuesta = await fetch('https://status.openai.com/api/v2/summary.json');
         const datos = await respuesta.json();
-        return datos.components.find(c => c.name === 'API')?.status || "unknown";
+        // Buscar el componente "Chat" que representa el servicio de texto
+        return datos.components.find(c => c.name === 'Chat')?.status || "unknown";
     } catch (error) {
         console.error('Error:', error);
         return "error";
     }
 }
 
-// Ejecutar en el DOM donde existe #circulo-info-estado-api
 document.addEventListener('DOMContentLoaded', async () => {
-    if (!document.getElementById('circulo-info-estado-api')) return; // Si no existe, salir
+    if (!document.getElementById('circulo-info-estado-api')) return;
 
     const estado = await obtenerEstadoAPI();
     
@@ -284,10 +284,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         degraded_performance: "amarillo",
         partial_outage: "naranja",
         major_outage: "rojo",
-        unknown: "",
-        error: ""
+        unknown: "--color-akutangulo", 
+        error: "--color-akutangulo"     
     };
 
     const circulo = document.getElementById('circulo-info-estado-api');
-    circulo.className = clases[estado];
+    circulo.className = clases[estado] || "--color-akutangulo"; 
 });
