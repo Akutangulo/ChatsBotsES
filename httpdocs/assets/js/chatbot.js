@@ -284,10 +284,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         degraded_performance: "amarillo",
         partial_outage: "naranja",
         major_outage: "rojo",
-        unknown: "--color-akutangulo", 
-        error: "--color-akutangulo"     
+        unknown: "--color-akutangulo",  // Añadí un color para "unknown" por claridad
+        error: "--color-akutangulo"     // Color para errores de red u otros problemas
     };
 
     const circulo = document.getElementById('circulo-info-estado-api');
-    circulo.className = clases[estado] || "--color-akutangulo"; 
+    circulo.className = clases[estado] || "gris"; // Por si el estado no está en el mapa
 });
