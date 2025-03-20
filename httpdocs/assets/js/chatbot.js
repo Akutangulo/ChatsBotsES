@@ -266,8 +266,7 @@ async function obtenerEstadoAPI() {
     try {
         const respuesta = await fetch('https://status.openai.com/api/v2/summary.json');
         const datos = await respuesta.json();
-        // Buscar el componente "Chat" que representa el servicio de texto
-        return datos.components.find(c => c.name === 'Chat')?.status || "unknown";
+        return datos.status.indicator || "unknown"; // Usamos datos.status.indicator para estado general
     } catch (error) {
         console.error('Error:', error);
         return "error";
@@ -277,17 +276,29 @@ async function obtenerEstadoAPI() {
 document.addEventListener('DOMContentLoaded', async () => {
     if (!document.getElementById('circulo-info-estado-api')) return;
 
-    const estado = await obtenerEstadoAPI();
-    
+    const estadoIndicador = await obtenerEstadoAPI(); // Ahora obtenemos el indicador
+
+    // Traducir 'minor' a 'degraded_performance', 'major' a 'major_outage' etc. para usar el mapeo existente (opcional, si quieres usar las mismas clases)
+    const estadoTraducido = {
+        none: 'operational',
+        minor: 'degraded_performance',
+        major: 'major_outage',
+        critical: 'major_outage', // Consideramos critical como major_outage también
+        maintenance: 'partial_outage', // Mantenimiento como interrupción parcial
+        unknown: 'unknown',
+        error: 'error'
+    }[estadoIndicador] || 'unknown'; // En caso de indicador inesperado
+
+
     const clases = {
         operational: "verde",
         degraded_performance: "amarillo",
         partial_outage: "naranja",
         major_outage: "rojo",
-        unknown: "--color-akutangulo",  // Añadí un color para "unknown" por claridad
-        error: "--color-akutangulo"     // Color para errores de red u otros problemas
+        unknown: "--color-akutangulo",
+        error: "--color-akutangulo"
     };
 
     const circulo = document.getElementById('circulo-info-estado-api');
-    circulo.className = clases[estado] || "gris"; // Por si el estado no está en el mapa
+    circulo.className = clases[estadoTraducido] || "gris"; // Usamos estadoTraducido para el mapeo
 });
