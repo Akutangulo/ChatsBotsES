@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!document.getElementById('estado-api')) return;
 
     const estadoIndicador = await obtenerEstadoAPI();
-    console.log("Valor de estadoIndicador:", estadoIndicador); // Añadido para depuración
+    //console.log("Valor de estadoIndicador:", estadoIndicador); // Añadido para depuración
 
     // Mapeo de los indicadores de statuspage.io a tus estados
     const estados = {
@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         major_outage: { texto: "Interrupción mayor", clase: "rojo" },
         critical: { texto: "Interrupción crítica", clase: "rojo" }, // Añadido estado crítico
         maintenance: { texto: "En mantenimiento", clase: "naranja" }, // Añadido estado mantenimiento
-        unknown: { texto: "Estado desconocido", clase: "" },
-        error: { texto: "Error al consultar", clase: "" }
+        unknown: { texto: "Estado desconocido", clase: "--color-akutangulo" },
+        error: { texto: "Error al consultar", clase: "--color-akutangulo" }
     };
 
     // Traducir 'minor' a 'degraded_performance', 'major' a 'major_outage' etc. para usar el mapeo existente
@@ -40,13 +40,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         error: 'error'
     }[estadoIndicador] || 'unknown'; // En caso de indicador inesperado
 
-    console.log("Valor de estadoTraducido:", estadoTraducido); // Añadido para depuración
+    //console.log("Valor de estadoTraducido:", estadoTraducido); // Añadido para depuración
 
     const elemento = document.getElementById('estado-api');
     elemento.innerHTML = `<h6>Estado de la API</h6><h4>${estados[estadoTraducido].texto}</h4>`;
     elemento.className = estados[estadoTraducido].clase;
 });
-
 
 
 // Modelos LLM disponibles
